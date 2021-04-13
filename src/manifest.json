@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Outbox for Tumblr",
+  "version": "0.0.0",
+
+  "description": "Save outgoing Tumblr asks automatically",
+
+  "browser_action": { },
+
+  "background": {
+    "scripts": [ "background.js" ],
+    "persistent": false
+  },
+  "homepage_url": "https://github.com/AprilSylph/Outbox-for-Tumblr#readme",
+  "permissions": [ "storage", "webRequest", "*://www.tumblr.com/api/v2/blog/*/posts" ],
+
+  "minimum_chrome_version": "38",
+  "browser_specific_settings": {
+    "gecko": {
+      "strict_min_version": "59.0a2"
+    }
+  }
+}
