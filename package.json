@@ -1,0 +1,26 @@
+{
+  "license": "GPL-3.0",
+  "repository": "github:AprilSylph/Outbox-for-Tumblr",
+  "scripts": {
+    "test": "eslint . && web-ext lint"
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-config-semistandard": "^15.0.1",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "web-ext": "^6.0.0"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "webextension-polyfill": "^0.7.0"
+  },
+  "webExt": {
+    "sourceDir": "src/",
+    "build": {
+      "overwriteDest": true
+    }
+  }
+}
