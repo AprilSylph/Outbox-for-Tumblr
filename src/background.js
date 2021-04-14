@@ -20,8 +20,7 @@ browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody, requ
   const { state, content } = parsedData;
 
   if (state === 'ask' && Array.isArray(content)) {
-    const timestamp = `${(new Date()).getTime()}`;
-    browser.storage.local.set({ [timestamp]: { recipient, content } });
+    browser.storage.local.set({ [timeStamp]: { recipient, content } });
   }
 }, {
   urls: ['*://www.tumblr.com/api/v2/blog/*/posts'],
