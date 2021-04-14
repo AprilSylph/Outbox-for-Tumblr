@@ -1,4 +1,12 @@
-browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody }) => {
+const handledRequests = [];
+
+browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody, requestId, timeStamp }) => {
+  if (handledRequests.includes(requestId)) {
+    return;
+  } else {
+    handledRequests.push(requestId);
+  }
+
   if (method !== 'POST') { return; }
 
   const { pathname } = new URL(url);
