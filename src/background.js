@@ -1,3 +1,5 @@
+browser.browserAction.onClicked.addListener(() => browser.tabs.create({ url: browser.runtime.getURL('/manage.html') }));
+
 const handledRequests = [];
 
 browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody, requestId, timeStamp }) => {

@@ -1,0 +1,40 @@
+:root {
+  --post-padding: 20px;
+  --post-vertical-spacing: 15px;
+}
+
+main {
+  max-width: 540px;
+}
+
+main, article {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+article header,
+article footer {
+  margin: var(--post-vertical-spacing) 0;
+}
+
+article header a {
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+article section.body > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+article section.body > div > * {
+  flex: 1;
+}
+
+p {
+  margin-top: 0;
+}
