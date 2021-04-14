@@ -9,7 +9,7 @@
 
   "background": {
     "scripts": [ "lib/browser-polyfill.min.js", "background.js" ],
-    "persistent": false
+    "persistent": true
   },
   "homepage_url": "https://github.com/AprilSylph/Outbox-for-Tumblr#readme",
   "permissions": [ "storage", "webRequest", "*://www.tumblr.com/api/v2/blog/*/posts" ],
