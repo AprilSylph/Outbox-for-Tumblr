@@ -1,10 +1,44 @@
 :root {
   --post-padding: 20px;
   --post-vertical-spacing: 15px;
+  --post-margin: 20px;
+
+  --background: 247, 247, 247;
+  --white: 233, 233, 233;
+  --black: 0, 0, 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 0, 0, 0;
+    --white: 34, 34, 34;
+    --black: 255, 255, 255;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  background-color: rgb(var(--background));
+  color: rgb(var(--black));
+  font-size: 16px;
+  font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
 }
 
 main {
+  flex-basis: 540px;
   max-width: 540px;
+  padding-bottom: var(--post-margin);
+}
+
+main > h1 {
+  margin-top: var(--post-margin);
+  margin-bottom: 0;
+
+
+  text-align: center;
 }
 
 main, article {
@@ -13,28 +47,47 @@ main, article {
   align-items: stretch;
 }
 
-article header,
-article footer {
-  margin: var(--post-vertical-spacing) 0;
+article {
+  border-radius: 3px;
+  padding: var(--post-vertical-spacing) var(--post-padding);
+  margin-top: var(--post-margin);
+
+  background-color: rgb(var(--white));
 }
 
-article header a {
+article header {
+  margin-bottom: var(--post-vertical-spacing);
+}
+
+article header a,
+.ask .attribution {
   color: inherit;
   font-weight: bold;
   text-decoration: none;
 }
 
-article section.body > div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
+.ask {
+  padding: 0 var(--post-padding);
+  border-radius: 3px;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+
+  background-color: rgba(var(--black), .07);
 }
 
-article section.body > div > * {
-  flex: 1;
+.ask .attribution {
+  display: block;
+  margin: var(--post-vertical-spacing) 0;
+
+  font-weight: bold;
+  text-decoration: none;
+  opacity: .65;
 }
 
 p {
-  margin-top: 0;
+  margin: var(--post-vertical-spacing) 0;
+}
+
+article footer {
+  margin-top: var(--post-vertical-spacing) 0;
 }

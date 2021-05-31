@@ -1,32 +1,44 @@
+import { renderContent } from './lib/npf.js';
+
 const mainElement = document.querySelector('main');
 
-const constructItem = ([timestamp, { recipient, content }]) => {
+const constructItem = ([timestamp, { recipient, content, layout }]) => {
   const articleElement = document.createElement('article');
 
-  const headerElement = document.createElement('header');
-  articleElement.appendChild(headerElement);
+  if (recipient) {
+    const headerElement = document.createElement('header');
+    articleElement.appendChild(headerElement);
 
-  headerElement.appendChild(Object.assign(document.createElement('span'), { textContent: 'You asked ' }));
-  headerElement.appendChild(Object.assign(document.createElement('a'), {
-    href: `https://${recipient}.tumblr.com/`,
-    target: '_blank',
-    textContent: recipient
-  }));
-  headerElement.appendChild(Object.assign(document.createElement('span'), { textContent: ':' }));
+    headerElement.appendChild(Object.assign(document.createElement('a'), {
+      href: `https://${recipient}.tumblr.com/`,
+      target: '_blank',
+      textContent: recipient
+    }));
+  }
 
   const bodyElement = Object.assign(document.createElement('section'), { className: 'body' });
   articleElement.appendChild(bodyElement);
 
-  content.forEach(block => {
-    const blockElement = document.createElement('div');
-    bodyElement.appendChild(blockElement);
+  const { ask, content: renderedContent } = renderContent({ content, layout });
 
-    switch (block.type) {
-      case 'text':
-        blockElement.appendChild(Object.assign(document.createElement('p'), { textContent: block.text }));
-        break;
+  if (ask) {
+    const askElement = Object.assign(document.createElement('div'), { className: 'ask' });
+    bodyElement.appendChild(askElement);
+    const { attribution } = ask;
+
+    if (attribution) {
+      const { blog } = attribution;
+      askElement.appendChild(Object.assign(document.createElement('a'), {
+        className: 'attribution',
+        textContent: blog.name,
+        href: blog.url,
+        title: blog.title,
+        target: '_blank'
+      }));
     }
-  });
+
+    askElement.append(...ask.content);
+  }
 
   const footerElement = document.createElement('footer');
   articleElement.appendChild(footerElement);
@@ -35,5 +47,5 @@ const constructItem = ([timestamp, { recipient, content }]) => {
 };
 
 browser.storage.local.get()
-  .then(storageObject => Object.entries(storageObject))
+  .then(storageObject => Object.entries(storageObject).reverse())
   .then(items => items.map(constructItem).forEach(element => mainElement.appendChild(element)));

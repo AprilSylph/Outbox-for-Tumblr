@@ -19,10 +19,10 @@ browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody, requ
   const rawData = requestBody.raw[0].bytes;
   const decodedData = decoder.decode(rawData);
   const parsedData = JSON.parse(decodedData);
-  const { state, content } = parsedData;
+  const { state, content, layout } = parsedData;
 
   if (state === 'ask' && Array.isArray(content)) {
-    browser.storage.local.set({ [timeStamp]: { recipient, content } });
+    browser.storage.local.set({ [timeStamp]: { recipient, content, layout } });
   }
 }, {
   urls: ['*://www.tumblr.com/api/v2/blog/*/posts'],
