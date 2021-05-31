@@ -1,6 +1,6 @@
 const mainElement = document.querySelector('main');
 
-const constructItem = ([ timestamp, { recipient, content } ]) => {
+const constructItem = ([timestamp, { recipient, content }]) => {
   const articleElement = document.createElement('article');
 
   const headerElement = document.createElement('header');
