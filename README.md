@@ -1,2 +1,2 @@
-# Outbox-for-Tumblr
+# Outbox for Tumblr
 Save outgoing Tumblr asks automatically
