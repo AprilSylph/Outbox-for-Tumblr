@@ -6,6 +6,10 @@
   --background: 247, 247, 247;
   --white: 233, 233, 233;
   --black: 0, 0, 0;
+
+  font-size: 16px;
+  line-height: 1.5;
+  scroll-padding-top: var(--post-margin);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,7 +27,6 @@ body {
 
   background-color: rgb(var(--background));
   color: rgb(var(--black));
-  font-size: 16px;
   font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
 }
 
@@ -57,12 +60,13 @@ article {
 
 article header {
   margin-bottom: var(--post-vertical-spacing);
+
+  font-size: .875rem;
+  font-weight: 700;
 }
 
-article header a,
-.ask .attribution {
+article header a {
   color: inherit;
-  font-weight: bold;
   text-decoration: none;
 }
 
@@ -79,9 +83,10 @@ article header a,
   display: block;
   margin: var(--post-vertical-spacing) 0;
 
-  font-weight: bold;
+  color: rgba(var(--black), 0.65);
+  font-size: .875rem;
+  font-weight: 700;
   text-decoration: none;
-  opacity: .65;
 }
 
 p {
@@ -93,11 +98,14 @@ article footer {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  box-sizing: content-box;
+  min-height: 24px;
   margin-top: var(--post-vertical-spacing);
 }
 
 article footer span {
   color: rgba(var(--black), 0.65);
+  font-size: .875rem;
   font-weight: normal;
 }
 
@@ -111,5 +119,6 @@ article footer button {
 
   background-color: transparent;
   color: rgba(var(--black), 0.65);
-  font-weight: bold;
+  font-weight: 700;
+  line-height: 1;
 }
