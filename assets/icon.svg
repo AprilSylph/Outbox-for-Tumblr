@@ -1,0 +1,9 @@
+<!--
+  Outbox icon from Material Design Icons by Google
+  https://github.com/google/material-design-icons/blob/4ea68aa/src/action/outbox/materialicons/24px.svg
+  Licensed under the Apache License 2.0
+-->
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" fill="#1A2735"/>
+  <path d="M101.333 16H26.6133C20.6933 16 16.0533 20.8 16.0533 26.6667L16 101.333C16 107.2 20.6933 112 26.6133 112H101.333C107.2 112 112 107.2 112 101.333V26.6667C112 20.8 107.2 16 101.333 16ZM101.333 80H80C80 88.8533 72.8 96 64 96C55.2 96 48 88.8533 48 80H26.6133V26.6667H101.333V80ZM42.6667 58.6667H53.3333V74.6667H74.6667V58.6667H85.3333L64 37.3333L42.6667 58.6667Z" fill="#EEEEEE"/>
+</svg>
