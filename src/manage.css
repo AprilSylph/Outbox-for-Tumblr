@@ -97,6 +97,19 @@ main {
   margin: 0 var(--post-margin);
 }
 
+main:empty::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+
+  content: "Your outbox is empty.";
+  color: rgba(var(--black), .65);
+  font-size: 1.3125rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 aside {
   position: sticky;
   top: 0;
