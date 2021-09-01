@@ -43,18 +43,26 @@ const constructItem = ([timestamp, { recipient, content, layout }]) => {
   const { ask, content: renderedContent } = renderContent({ content, layout });
 
   if (ask) {
+    const askWrapper = Object.assign(document.createElement('div'), { className: 'ask-wrapper' });
     const askElement = Object.assign(document.createElement('div'), { className: 'ask' });
-    bodyElement.appendChild(askElement);
+    askWrapper.appendChild(askElement);
+    bodyElement.appendChild(askWrapper);
     const { attribution } = ask;
 
     if (attribution) {
       const { blog } = attribution;
+
       askElement.appendChild(Object.assign(document.createElement('a'), {
         className: 'attribution',
         textContent: blog.name,
         href: blog.url,
         title: blog.title,
         target: '_blank'
+      }));
+
+      askWrapper.appendChild(Object.assign(document.createElement('img'), {
+        className: 'ask-avatar',
+        src: `https://api.tumblr.com/v2/blog/${blog.uuid}/avatar/40`
       }));
     }
 

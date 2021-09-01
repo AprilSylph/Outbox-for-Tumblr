@@ -188,12 +188,6 @@ aside a[target="_blank"]::after {
 
 /* Main */
 
-main, article {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
 article {
   border-radius: 3px;
   padding: var(--post-vertical-spacing) var(--post-padding);
@@ -214,6 +208,13 @@ article header a {
   text-decoration: none;
 }
 
+.ask-wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 40px;
+  grid-column-gap: var(--post-vertical-spacing);
+  margin: var(--post-vertical-spacing) 0;
+}
+
 .ask {
   padding: 0 var(--post-padding);
   border-radius: 3px;
@@ -221,6 +222,10 @@ article header a {
   border-bottom: 1px solid transparent;
 
   background-color: rgba(var(--black), .07);
+}
+
+.ask-avatar {
+  border-radius: 3px;
 }
 
 .ask .attribution {
