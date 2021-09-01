@@ -22,33 +22,33 @@ const onDeleteButtonClicked = ({ currentTarget }) => {
   browser.storage.local.remove(timestamp);
 };
 
-const constructItem = ([timestamp, { recipient, content, layout }]) => {
+const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]) => {
   const articleElement = document.createElement('article');
   Object.assign(articleElement.dataset, { timestamp });
 
-  if (recipient) {
+  if (recipient || recipientUrl) {
     const headerElement = document.createElement('header');
     articleElement.appendChild(headerElement);
 
     headerElement.appendChild(Object.assign(document.createElement('a'), {
-      href: `https://${recipient}.tumblr.com/`,
+      href: recipientUrl || `https://${recipient}.tumblr.com/`,
       target: '_blank',
-      textContent: recipient
+      textContent: recipient || recipientUrl
     }));
   }
 
   const bodyElement = Object.assign(document.createElement('section'), { className: 'body' });
   articleElement.appendChild(bodyElement);
 
-  const { ask, content: renderedContent } = renderContent({ content, layout });
+  const { ask } = renderContent({ content, layout });
 
   if (ask) {
     const askWrapper = Object.assign(document.createElement('div'), { className: 'ask-wrapper' });
     const askElement = Object.assign(document.createElement('div'), { className: 'ask' });
     askWrapper.appendChild(askElement);
     bodyElement.appendChild(askWrapper);
-    const { attribution } = ask;
 
+    const { attribution } = ask;
     if (attribution) {
       const { blog } = attribution;
 

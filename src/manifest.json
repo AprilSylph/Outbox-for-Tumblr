@@ -23,7 +23,13 @@
     "persistent": true
   },
   "homepage_url": "https://github.com/AprilSylph/Outbox-for-Tumblr#readme",
-  "permissions": [ "storage", "webRequest", "*://www.tumblr.com/api/v2/blog/*/posts" ],
+  "permissions": [
+    "storage",
+    "webRequest",
+    "*://www.tumblr.com/api/v2/blog/*/posts",
+    "*://*.tumblr.com/ask",
+    "*://www.tumblr.com/ask_form/*?t="
+  ],
 
   "minimum_chrome_version": "38",
   "browser_specific_settings": {

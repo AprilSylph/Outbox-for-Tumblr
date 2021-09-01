@@ -30,3 +30,28 @@ browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody, requ
 }, [
   'requestBody'
 ]);
+
+browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody: { formData }, requestId, timeStamp }) => {
+  if (handledRequests.includes(requestId)) {
+    return;
+  } else {
+    handledRequests.push(requestId);
+  }
+
+  if (method !== 'POST') { return; }
+
+  const { protocol, pathname } = new URL(url);
+  const recipientUrl = `${protocol}//${pathname.replace(/\/ask_form\//, '').replace(/\//g, '')}`;
+
+  browser.storage.local.set({
+    [timeStamp]: {
+      recipientUrl,
+      content: formData['post[one]'].map(text => ({ type: 'text', text, formatting: [] })),
+      layout: [{ blocks: [0], type: 'ask' }]
+    }
+  });
+}, {
+  urls: ['*://www.tumblr.com/ask_form/*?t=']
+}, [
+  'requestBody'
+]);
