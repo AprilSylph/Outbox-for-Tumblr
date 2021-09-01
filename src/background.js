@@ -41,7 +41,7 @@ browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody: { fo
   if (method !== 'POST') { return; }
 
   const { protocol, pathname } = new URL(url);
-  const recipientUrl = `${protocol}//${pathname.replace(/\/ask_form\//, '').replace(/\//g, '')}`;
+  const recipientUrl = `${protocol}//${pathname.replace(/\/ask_form\//, '').replace(/\//g, '')}/`;
 
   browser.storage.local.set({
     [timeStamp]: {
