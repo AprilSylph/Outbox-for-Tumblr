@@ -216,9 +216,24 @@ article header {
   font-weight: 700;
 }
 
+article header:empty::before {
+  content: "Private Answer";
+  opacity: 0.65;
+}
+
 article header a {
   color: inherit;
   text-decoration: none;
+}
+
+article header a::before {
+  content: "You asked ";
+  opacity: 0.65;
+}
+
+article header a::after {
+  content: ":";
+  opacity: 0.65;
 }
 
 .ask-wrapper {

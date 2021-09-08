@@ -28,10 +28,10 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
   const articleElement = document.createElement('article');
   Object.assign(articleElement.dataset, { timestamp });
 
-  if (recipient || recipientUrl) {
-    const headerElement = document.createElement('header');
-    articleElement.appendChild(headerElement);
+  const headerElement = document.createElement('header');
+  articleElement.appendChild(headerElement);
 
+  if (recipient || recipientUrl) {
     headerElement.appendChild(Object.assign(document.createElement('a'), {
       href: recipientUrl || `https://${recipient}.tumblr.com/`,
       target: '_blank',
