@@ -9,23 +9,31 @@ browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody, requ
     handledRequests.push(requestId);
   }
 
-  if (method !== 'POST') { return; }
+  if (['POST', 'PUT'].includes(method) === false) { return; }
 
   const { pathname } = new URL(url);
-  const recipient = pathname.split('/')[4];
+  const addressee = pathname.split('/')[4];
+  const recipient = addressee.startsWith('t:') ? null : addressee;
 
   const decoder = new TextDecoder();
 
   const rawData = requestBody.raw[0].bytes;
   const decodedData = decoder.decode(rawData);
   const parsedData = JSON.parse(decodedData);
-  const { state, content, layout } = parsedData;
+  const { state, is_private: isPrivate, content, layout } = parsedData;
 
-  if (state === 'ask' && Array.isArray(content)) {
+  const hasContent = Array.isArray(content);
+  const isAsk = state === 'ask';
+  const isPrivateAnswer = state === undefined && isPrivate === true && layout[0].type === 'ask';
+
+  if (hasContent && (isAsk || isPrivateAnswer)) {
     browser.storage.local.set({ [timeStamp]: { recipient, content, layout } });
   }
 }, {
-  urls: ['*://www.tumblr.com/api/v2/blog/*/posts'],
+  urls: [
+    '*://www.tumblr.com/api/v2/blog/*/posts',
+    '*://www.tumblr.com/api/v2/blog/*/posts/*'
+  ],
   types: ['xmlhttprequest']
 }, [
   'requestBody'

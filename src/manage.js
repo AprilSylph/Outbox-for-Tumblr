@@ -42,7 +42,7 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
   const bodyElement = Object.assign(document.createElement('section'), { className: 'body' });
   articleElement.appendChild(bodyElement);
 
-  const { ask } = renderContent({ content, layout });
+  const { ask, content: renderedContent } = renderContent({ content, layout });
 
   if (ask) {
     const askWrapper = Object.assign(document.createElement('div'), { className: 'ask-wrapper' });
@@ -74,6 +74,10 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
     }
 
     askElement.append(...ask.content);
+  }
+
+  if (renderedContent) {
+    bodyElement.append(...renderedContent);
   }
 
   const footerElement = document.createElement('footer');

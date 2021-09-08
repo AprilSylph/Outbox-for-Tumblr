@@ -27,6 +27,7 @@
     "storage",
     "webRequest",
     "*://www.tumblr.com/api/v2/blog/*/posts",
+    "*://www.tumblr.com/api/v2/blog/*/posts/*",
     "*://*.tumblr.com/ask",
     "*://www.tumblr.com/ask_form/*?t="
   ],
