@@ -3,14 +3,14 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - src/**
       - package*.json
       - .eslintrc.json
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   test:
