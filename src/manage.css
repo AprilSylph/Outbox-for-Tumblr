@@ -69,6 +69,7 @@ body {
   background-color: rgb(var(--background));
   color: rgb(var(--black));
   font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  font-size: 100%;
 }
 
 #page-header {
