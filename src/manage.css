@@ -204,6 +204,10 @@ aside a[target="_blank"]::after {
 
 /* Main */
 
+main > p {
+  margin: var(--post-margin) 0;
+}
+
 article {
   border-radius: 3px;
   padding: var(--post-vertical-spacing) var(--post-padding);

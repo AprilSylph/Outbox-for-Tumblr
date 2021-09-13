@@ -97,4 +97,10 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
 browser.storage.local.get()
   .then(storageObject => Object.entries(storageObject).reverse())
   .then(items => mainElement.append(...items.map(constructItem)))
-  .then(() => mainElement.setAttribute('aria-busy', false));
+  .catch(exception => {
+    mainElement.append(...[
+      Object.assign(document.createElement('p'), { textContent: 'Something went wrong.' }),
+      Object.assign(document.createElement('pre'), { textContent: `${exception}` })
+    ]);
+  })
+  .finally(() => mainElement.setAttribute('aria-busy', false));
