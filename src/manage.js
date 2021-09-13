@@ -96,4 +96,5 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
 
 browser.storage.local.get()
   .then(storageObject => Object.entries(storageObject).reverse())
-  .then(items => items.map(constructItem).forEach(element => mainElement.appendChild(element)));
+  .then(items => mainElement.append(...items.map(constructItem)))
+  .then(() => mainElement.setAttribute('aria-busy', false));

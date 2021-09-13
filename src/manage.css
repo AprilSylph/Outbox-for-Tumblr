@@ -104,12 +104,14 @@ main:empty::before {
   align-items: center;
   height: 200px;
 
-  content: "Your outbox is empty.";
   color: rgba(var(--black), .65);
   font-size: 1.3125rem;
   font-weight: 700;
   text-align: center;
 }
+
+main[aria-busy="true"]:empty::before { content: "Loading..."; }
+main[aria-busy="false"]:empty::before { content: "Your outbox is empty."; }
 
 aside {
   position: sticky;
