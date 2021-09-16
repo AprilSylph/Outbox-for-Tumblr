@@ -104,9 +104,7 @@ main:empty {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  padding-left: var(--post-padding);
-  padding-right: var(--post-padding);
+  padding: 100px var(--post-padding);
 
   text-align: center;
 }
