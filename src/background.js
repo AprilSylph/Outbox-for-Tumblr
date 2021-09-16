@@ -2,7 +2,7 @@ browser.browserAction.onClicked.addListener(() => browser.tabs.create({ url: bro
 
 const handledRequests = [];
 
-browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody, requestId, timeStamp }) => {
+browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp, url }) => {
   if (handledRequests.includes(requestId)) {
     return;
   } else {
@@ -39,7 +39,7 @@ browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody, requ
   'requestBody'
 ]);
 
-browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody: { formData }, requestId, timeStamp }) => {
+browser.webRequest.onBeforeRequest.addListener(({ method, requestBody: { formData }, requestId, timeStamp, url }) => {
   if (handledRequests.includes(requestId)) {
     return;
   } else {
