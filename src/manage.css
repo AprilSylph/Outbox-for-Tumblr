@@ -98,20 +98,30 @@ main {
   margin: 0 var(--post-margin);
 }
 
-main:empty::before {
+main:empty {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 200px;
 
+  text-align: center;
+}
+
+main:empty::before {
   color: rgba(var(--black), .65);
   font-size: 1.3125rem;
   font-weight: 700;
-  text-align: center;
+}
+
+main:empty::after {
+  color: rgba(var(--black), 0.4);
+  font-weight: 400;
 }
 
 main[aria-busy="true"]:empty::before { content: "Loading..."; }
 main[aria-busy="false"]:empty::before { content: "Your outbox is empty."; }
+main[aria-busy="false"]:empty::after { content: "When you send asks or answer asks privately, they'll show up here."; }
 
 aside {
   position: sticky;
