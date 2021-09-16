@@ -93,6 +93,7 @@ body {
 }
 
 main {
+  box-sizing: border-box;
   width: 540px;
   padding-bottom: var(--post-margin);
   margin: 0 var(--post-margin);
@@ -104,6 +105,8 @@ main:empty {
   justify-content: center;
   align-items: center;
   height: 200px;
+  padding-left: var(--post-padding);
+  padding-right: var(--post-padding);
 
   text-align: center;
 }
