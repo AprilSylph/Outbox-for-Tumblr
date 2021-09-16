@@ -39,7 +39,7 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId
   'requestBody'
 ]);
 
-browser.webRequest.onBeforeRequest.addListener(({ method, requestBody: { formData }, requestId, timeStamp, url }) => {
+browser.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBody: { formData }, requestId, timeStamp }) => {
   if (handledRequests.includes(requestId)) {
     return;
   } else {
@@ -48,8 +48,8 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody: { formDat
 
   if (method !== 'POST') { return; }
 
-  const { protocol, pathname } = new URL(url);
-  const recipientUrl = `${protocol}//${pathname.replace(/\/ask_form\//, '').replace(/\//g, '')}/`;
+  const addresseeUrl = Object.assign(new URL(documentUrl), { pathname: '/' });
+  const recipientUrl = addresseeUrl.toString();
 
   browser.storage.local.set({
     [timeStamp]: {
