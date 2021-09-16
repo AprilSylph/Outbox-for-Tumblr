@@ -59,7 +59,8 @@ browser.webRequest.onBeforeRequest.addListener(({ method, url, requestBody: { fo
     }
   });
 }, {
-  urls: ['*://www.tumblr.com/ask_form/*?t=']
+  urls: ['*://www.tumblr.com/ask_form/*?t='],
+  types: ['sub_frame']
 }, [
   'requestBody'
 ]);
