@@ -16,7 +16,6 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId
   const recipient = addressee.startsWith('t:') ? null : addressee;
 
   const decoder = new TextDecoder();
-
   const rawData = requestBody.raw[0].bytes;
   const decodedData = decoder.decode(rawData);
   const parsedData = JSON.parse(decodedData);
@@ -34,6 +33,35 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId
     '*://www.tumblr.com/api/v2/blog/*/posts',
     '*://www.tumblr.com/api/v2/blog/*/posts/*'
   ],
+  types: ['xmlhttprequest']
+}, [
+  'requestBody'
+]);
+
+browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp }) => {
+  if (handledRequests.includes(requestId)) {
+    return;
+  } else {
+    handledRequests.push(requestId);
+  }
+
+  if (method !== 'POST') { return; }
+
+  const decoder = new TextDecoder();
+  const rawData = requestBody.raw[0].bytes;
+  const decodedData = decoder.decode(rawData);
+  const parsedData = JSON.parse(decodedData);
+  const { question, recipient } = parsedData;
+
+  browser.storage.local.set({
+    [timeStamp]: {
+      recipient,
+      content: [{ type: 'text', text: question, formatting: [] }],
+      layout: [{ blocks: [0], type: 'ask' }]
+    }
+  });
+}, {
+  urls: ['*://www.tumblr.com/svc/post/ask'],
   types: ['xmlhttprequest']
 }, [
   'requestBody'
