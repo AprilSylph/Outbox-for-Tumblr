@@ -13,8 +13,7 @@ export const renderContent = ({ content: blocks, layout }) => {
 
     if (elements.length !== 1) {
       return [document.createElement('div').tap(row => {
-        row.style.display = 'flex';
-        mode && (row.classList = `row-${mode.type}`);
+        row.className = `row ${mode ? mode.type : ''}`.trim();
         row.append(...elements);
       })];
     } else {
@@ -83,7 +82,6 @@ const blockRenderers = {
           .map(m => `${m.url} ${m.width}w`).join(',\n');
         const [largestWidthMedia] = media.sort(descendBy(i => i.width));
         img.src = largestWidthMedia.url;
-        img.style.width = '100%';
       }));
     });
   },

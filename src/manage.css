@@ -385,3 +385,30 @@ article h1 {
   font-size: 24px;
   line-height: 1.3em;
 }
+
+figure img {
+  object-fit: cover;
+}
+
+div.row {
+  display: flex;
+  flex-direction: row;
+}
+
+div.row > figure {
+  flex: 1;
+  padding: 0 2px;
+}
+
+div.row > figure:first-child {
+  padding-left: 0;
+}
+
+div.row > figure:last-child {
+  padding-right: 0;
+}
+
+div.row > figure img {
+  width: 100%;
+  height: 100%;
+}
