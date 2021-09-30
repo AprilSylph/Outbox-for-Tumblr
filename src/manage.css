@@ -73,6 +73,9 @@ a {
   text-decoration: underline;
 }
 
+iframe { display: block; }
+small { font-size: small; }
+
 blockquote {
   padding-left: var(--post-padding);
   border-left: 3px solid rgba(var(--black), 0.07);

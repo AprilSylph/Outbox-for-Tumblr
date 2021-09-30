@@ -236,6 +236,7 @@ const formatRenderers = {
   bold: () => document.createElement('strong'),
   italic: () => document.createElement('em'),
   strikethrough: () => document.createElement('s'),
+  small: () => document.createElement('small'),
   link: ({ url }) => document.createElement('a').tap(a => {
     a.href = url;
     a.target = '_blank';
