@@ -91,6 +91,7 @@ const blockRenderers = {
   link ({ url, title, description }) {
     return document.createElement('a').tap(a => {
       a.href = url;
+      a.target = '_blank';
       a.style.display = 'block';
       a.style.border = '1px dashed';
       a.style.padding = '0.5em';
@@ -129,6 +130,7 @@ const blockRenderers = {
         iframe.allowtransparency = true;
         iframe.append(document.createElement('a').tap(link => {
           link.href = url;
+          link.target = '_blank';
           link.append(`${title} by ${artist}`);
         }));
       });
@@ -137,6 +139,7 @@ const blockRenderers = {
     } else {
       return document.createElement('a').tap(a => {
         a.href = url;
+        a.target = '_blank';
         a.append('(audio)');
       });
     }
@@ -159,6 +162,7 @@ const blockRenderers = {
     } else {
       return document.createElement('a').tap(a => {
         a.href = url;
+        a.target = '_blank';
         a.append('(video)');
       });
     }
@@ -234,9 +238,11 @@ const formatRenderers = {
   strikethrough: () => document.createElement('s'),
   link: ({ url }) => document.createElement('a').tap(a => {
     a.href = url;
+    a.target = '_blank';
   }),
   mention: ({ blog: { url } }) => document.createElement('a').tap(a => {
     a.href = url;
+    a.target = '_blank';
     a.classList.push('h-card', 'mention');
   }),
   color: ({ hex }) => document.createElement('font').tap(font => {
