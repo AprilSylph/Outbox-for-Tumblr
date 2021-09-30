@@ -92,6 +92,10 @@ ol {
   list-style-type: decimal;
 }
 
+figure {
+  margin: 0 0 4px;
+}
+
 /* Page layout */
 
 body {

@@ -77,7 +77,6 @@ const blockRenderers = {
 
   image ({ alt_text, media }) {
     return document.createElement('figure').tap(figure => {
-      figure.style.margin = 0;
       figure.append(document.createElement('img').tap(img => {
         alt_text && (img.alt = img.title = alt_text);
         img.srcset = media.filter(m => !m.cropped)
