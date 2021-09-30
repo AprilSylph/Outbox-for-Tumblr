@@ -12,6 +12,8 @@ Save outgoing Tumblr asks automatically.
 ## Usage
 Saving asks and answers is done passively. Open your outbox by clicking on the addon icon in the browser toolbar.
 
+On Firefox, it is possible to save asks sent on blogs with custom domains (e.g. https://www.davidslog.com/ask) by granting "Access your data for all web sites" in the extension's permissions.
+
 ## Support
 Open an issue in this repository if you find something wrong. Please check existing issues before opening your own.
 

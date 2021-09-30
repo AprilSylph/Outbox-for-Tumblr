@@ -28,6 +28,9 @@
     "webRequest",
     "*://*.tumblr.com/*"
   ],
+  "optional_permissions": [
+    "<all_urls>"
+  ],
 
   "minimum_chrome_version": "38",
   "browser_specific_settings": {
