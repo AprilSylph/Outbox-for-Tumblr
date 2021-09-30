@@ -56,18 +56,21 @@ const normalizeRows = (rows, blocks) => {
 const blockRenderers = {
   text ({ subtype, text, formatting }) {
     const element = document.createElement(({
-      heading1: 'h2',
-      heading2: 'h3',
-      quirky: 'marquee',
-      quote: 'blockquote',
+      heading1: 'h1',
+      heading2: 'h2',
       indented: 'blockquote',
-      chat: 'pre',
       'ordered-list-item': 'li',
       'unordered-list-item': 'li'
     })[subtype] || 'p');
 
+    const className = {
+      quirky: 'npf_quirky',
+      quote: 'npf_quote',
+      chat: 'npf_chat'
+    }[subtype];
+
+    if (className !== undefined) Object.assign(element, { className });
     element.append(...applyFormatting({ text, formatting }));
-    element.style.whiteSpace = 'pre-wrap';
 
     return element;
   },
