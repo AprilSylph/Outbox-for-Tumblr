@@ -386,8 +386,15 @@ article h1 {
   line-height: 1.3em;
 }
 
+article figure,
+div.row {
+  max-width: none;
+  margin-left: calc(0px - var(--post-padding));
+  margin-right: calc(0px - var(--post-padding));
+}
+
 figure img {
-  object-fit: cover;
+  width: 100%;
 }
 
 div.row {
@@ -398,6 +405,8 @@ div.row {
 div.row > figure {
   flex: 1;
   padding: 0 2px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 div.row > figure:first-child {
@@ -411,4 +420,5 @@ div.row > figure:last-child {
 div.row > figure img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
