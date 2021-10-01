@@ -95,7 +95,7 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
 };
 
 browser.storage.local.get()
-  .then(storageObject => Object.entries(storageObject).reverse())
+  .then(storageObject => Object.entries(storageObject).sort(([a], [b]) => a - b).reverse())
   .then(items => mainElement.append(...items.map(constructItem)))
   .catch(exception => {
     mainElement.append(...[
