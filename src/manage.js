@@ -121,3 +121,29 @@ browser.storage.local.get()
     exportLink.href = `data:application/json,${encodeURIComponent(storageString)}`;
     exportLink.download = `Outbox Backup @ ${dateString}.json`;
   });
+
+document.getElementById('import').addEventListener('change', async ({ currentTarget }) => {
+  try {
+    const { files } = currentTarget;
+    const [importedBackup] = files;
+
+    if (importedBackup.type !== 'application/json') {
+      throw new Error('Invalid file type selected.');
+    }
+
+    const storageString = await importedBackup.text();
+    const storageObject = JSON.parse(storageString);
+
+    const keysAreValid = Object.keys(storageObject).every(key => isNaN(key) === false);
+    const valuesAreValid = Object.values(storageObject).every(({ content, layout }) => Array.isArray(content) && Array.isArray(layout));
+
+    if (!keysAreValid) throw new Error('Imported data contains invalid keys.');
+    if (!valuesAreValid) throw new Error('Imported data contains invalid values.');
+
+    await browser.storage.local.set(storageObject);
+    location.reload();
+  } catch (exception) {
+    window.alert(exception.toString());
+    currentTarget.value = currentTarget.defaultValue;
+  }
+});

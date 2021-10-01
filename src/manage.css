@@ -237,7 +237,8 @@ aside ul li:focus-within {
   background-color: rgba(var(--black), .07);
 }
 
-aside a {
+aside a,
+aside label {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -250,6 +251,10 @@ aside a {
 aside a[target="_blank"]::after {
   content: "\2192";
   color:rgba(var(--black), .65);
+}
+
+aside label {
+  cursor: pointer;
 }
 
 /* Main */
