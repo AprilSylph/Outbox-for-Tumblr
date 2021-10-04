@@ -27,7 +27,7 @@ export const renderContent = ({ content: blocks, layout }) => {
       askContent.push(...renderRow(row));
     } else if (row.blocks.find(i => i > truncate_after) !== undefined) {
       details = details || document.createElement('details').tap(d => {
-        d.append(document.createElement('summary').tap(s => s.textContent = 'Read More'));
+        d.append(document.createElement('summary').tap(s => s.textContent = 'Keep reading'));
         content.push(d);
       });
       details.append(...renderRow(row));
