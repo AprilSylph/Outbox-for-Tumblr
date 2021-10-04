@@ -98,6 +98,7 @@ browser.storage.local.get()
   .then(storageObject => Object.entries(storageObject).sort(([a], [b]) => a - b).reverse())
   .then(items => mainElement.append(...items.map(constructItem)))
   .catch(exception => {
+    console.error(exception);
     mainElement.append(...[
       Object.assign(document.createElement('p'), { textContent: 'Something went wrong.' }),
       Object.assign(document.createElement('pre'), { textContent: `${exception}` })
