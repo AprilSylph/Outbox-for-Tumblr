@@ -3,9 +3,9 @@ Object.prototype.tap = function(f) { f(this); return this; };
 
 export const renderContent = ({ content: blocks, layout }) => {
   const content = [];
-  const { rows, condensed, ask } = keyBy(layout, 'type');
+  const { rows, ask } = keyBy(layout, 'type');
+  const { truncate_after } = rows || {};
 
-  const truncate_after = condensed && (condensed.truncate_after || Math.max(...condensed.blocks));
   let askContent, details;
 
   const renderRow = ({ blocks: blockIndexes, mode }) => {
