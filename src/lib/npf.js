@@ -68,6 +68,9 @@ const blockRenderers = {
       chat: 'npf_chat'
     }[subtype];
 
+    if (subtype === 'ordered-list-item') element.dataset.ordered = true;
+    if (subtype === 'unordered-list-item') element.dataset.ordered = false;
+
     if (className !== undefined) Object.assign(element, { className });
     element.append(...applyFormatting({ text, formatting }));
 
@@ -273,3 +276,17 @@ const splitArray = (array, index) => [
   array.slice(0, index),
   array.slice(index)
 ];
+
+export const buildLists = parentNode => {
+  const getFirstListItem = () => parentNode.querySelector(':scope > li[data-ordered]');
+  while (getFirstListItem() !== null) {
+    const firstListItem = getFirstListItem();
+    const { ordered } = firstListItem.dataset;
+
+    const listElement = document.createElement(ordered === "true" ? 'ol' : 'ul');
+    parentNode.insertBefore(listElement, firstListItem);
+    while (listElement.nextElementSibling?.dataset.ordered === ordered) {
+      listElement.append(listElement.nextElementSibling);
+    }
+  }
+};
