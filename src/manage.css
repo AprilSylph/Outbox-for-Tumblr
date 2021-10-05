@@ -441,6 +441,37 @@ figure img {
   width: 100%;
 }
 
+figure a {
+  display: block;
+  overflow: hidden;
+  padding: 0 var(--post-padding);
+
+  background-color: rgba(var(--black), 0.07);
+  color: rgba(var(--black), 0.4);
+  font-size: 0.875rem;
+  line-height: 1.875rem;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+figure a:hover,
+figure a:focus {
+  background-color: rgba(var(--accent), 0.07);
+  color: rgb(var(--accent));
+}
+
+figure a.gif-attribution {
+  margin-top: calc(var(--post-vertical-spacing) / 2);
+  margin-bottom: var(--post-vertical-spacing);
+
+  background-color: transparent;
+  color: rgba(var(--black), 0.65);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: end;
+}
+
 div.row {
   display: flex;
   flex-direction: row;

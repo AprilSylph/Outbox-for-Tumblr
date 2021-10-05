@@ -77,7 +77,7 @@ const blockRenderers = {
     return element;
   },
 
-  image ({ alt_text, media }) {
+  image ({ attribution, alt_text, media }) {
     return document.createElement('figure').tap(figure => {
       figure.append(document.createElement('img').tap(img => {
         alt_text && (img.alt = img.title = alt_text);
@@ -86,6 +86,22 @@ const blockRenderers = {
         const [largestWidthMedia] = media.sort(descendBy(i => i.width));
         img.src = largestWidthMedia.url;
       }));
+      if (attribution?.url) {
+        figure.append(document.createElement('a').tap(a => {
+          a.href = attribution.url;
+          a.target = '_blank';
+
+          if (attribution.display_text) {
+            a.textContent = attribution.display_text;
+          } else if (attribution.blog?.name) {
+            a.className = 'gif-attribution';
+            a.textContent = 'GIF by ';
+            a.append(Object.assign(document.createElement('strong'), { textContent: attribution.blog.name }));
+          } else {
+            a.textContent = attribution.url;
+          }
+        }));
+      }
     });
   },
 
