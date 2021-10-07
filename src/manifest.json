@@ -32,10 +32,10 @@
     "<all_urls>"
   ],
 
-  "minimum_chrome_version": "38",
+  "minimum_chrome_version": "80",
   "browser_specific_settings": {
     "gecko": {
-      "strict_min_version": "59.0a2"
+      "strict_min_version": "74.0a1"
     }
   }
 }
