@@ -100,8 +100,17 @@ const onStorageChanged = (changes, areaName) => {
   if (areaName !== 'local') return;
 
   const changedKeys = Object.keys(changes);
-  const deletedKeys = changedKeys.filter(key => changes[key].oldValue !== undefined && changes[key].newValue === undefined);
+  const deletedKeys = changedKeys.filter(key => changes[key].newValue === undefined);
   deletedKeys.forEach(deletedKey => mainElement.querySelector(`:scope > article[data-timestamp="${deletedKey}"]`)?.remove());
+
+  const changedEntries = Object.entries(changes);
+  const newEntries = changedEntries.filter(([key]) => changes[key].oldValue === undefined);
+  const newItems = newEntries.map(([key, { newValue }]) => [key, newValue]).map(constructItem);
+  newItems.forEach(newNode => {
+    const newTimestamp = newNode.dataset.timestamp;
+    const referenceNode = [...mainElement.children].find(({ dataset: { timestamp } }) => timestamp < newTimestamp);
+    mainElement.insertBefore(newNode, referenceNode || null);
+  });
 };
 
 browser.storage.onChanged.addListener(onStorageChanged);
@@ -152,7 +161,6 @@ importInput.addEventListener('change', async ({ currentTarget }) => {
     if (!valuesAreValid) throw new Error('Imported data contains invalid values.');
 
     await browser.storage.local.set(storageObject);
-    location.reload();
   } catch (exception) {
     window.alert(exception.toString());
     currentTarget.value = currentTarget.defaultValue;
