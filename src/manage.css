@@ -310,6 +310,11 @@ article {
   background-color: rgb(var(--white));
 }
 
+article:focus {
+  box-shadow: 0 0 10px 1px rgb(var(--accent));
+  outline: none;
+}
+
 article header {
   margin-bottom: var(--post-vertical-spacing);
 

@@ -25,7 +25,7 @@ const onDeleteButtonClicked = ({ currentTarget }) => {
 };
 
 const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]) => {
-  const articleElement = document.createElement('article');
+  const articleElement = Object.assign(document.createElement('article'), { tabIndex: -1 });
   Object.assign(articleElement.dataset, { timestamp });
 
   const headerElement = document.createElement('header');
