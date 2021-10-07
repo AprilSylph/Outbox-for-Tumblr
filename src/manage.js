@@ -21,8 +21,6 @@ const onDeleteButtonClicked = ({ currentTarget }) => {
 
   const articleElement = currentTarget.closest('article');
   const { timestamp } = articleElement.dataset;
-  articleElement.remove();
-
   browser.storage.local.remove(timestamp);
 };
 
@@ -97,6 +95,16 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
 
   return articleElement;
 };
+
+const onStorageChanged = (changes, areaName) => {
+  if (areaName !== 'local') return;
+
+  const changedKeys = Object.keys(changes);
+  const deletedKeys = changedKeys.filter(key => changes[key].oldValue !== undefined && changes[key].newValue === undefined);
+  deletedKeys.forEach(deletedKey => mainElement.querySelector(`:scope > article[data-timestamp="${deletedKey}"]`)?.remove());
+};
+
+browser.storage.onChanged.addListener(onStorageChanged);
 
 browser.storage.local.get()
   .then(storageObject => Object.entries(storageObject).sort(([a], [b]) => a - b).reverse())
