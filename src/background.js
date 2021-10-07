@@ -92,3 +92,11 @@ browser.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBo
 }, [
   'requestBody'
 ]);
+
+browser.storage.onChanged.addListener(async (changes, areaName) => {
+  const storageObject = await browser.storage[areaName].get();
+  const storageKeys = Object.keys(storageObject).sort((a, b) => a - b);
+  const keysToRemove = storageKeys.splice(0, storageKeys.length - 512);
+
+  if (keysToRemove.length > 0) browser.storage[areaName].remove(keysToRemove);
+});
