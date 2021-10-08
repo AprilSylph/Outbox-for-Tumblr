@@ -1,3 +1,11 @@
+/* npf.js by nightpool
+ * https://gist.github.com/nightpool/2fd5c94ef222bf67f9ad58a7a739a26f
+ *
+ * Modified by April Sylph
+ * https://gist.github.com/AprilSylph/667c158595418f5bc15b23c661f6a707
+ * https://github.com/AprilSylph/Outbox-for-Tumblr/commits/main/src/lib/npf.js
+ */
+
 const keyBy = (array, input) => array.reduce((accumulator, currentValue) => Object.assign(accumulator, { [currentValue[input]]: currentValue }), {});
 Object.prototype.tap = function(f) { f(this); return this; };
 
