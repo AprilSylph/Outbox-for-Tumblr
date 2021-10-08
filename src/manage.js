@@ -96,6 +96,23 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
   return articleElement;
 };
 
+const updateExportDownload = () => {
+  browser.storage.local.get()
+    .then(storageObject => JSON.stringify(storageObject, null, 2))
+    .then(storageString => {
+      const now = new Date();
+
+      const fourDigitYear = now.getFullYear().toString().padStart(4, '0');
+      const twoDigitMonth = (now.getMonth() + 1).toString().padStart(2, '0');
+      const twoDigitDate = now.getDate().toString().padStart(2, '0');
+
+      const dateString = `${fourDigitYear}-${twoDigitMonth}-${twoDigitDate}`;
+
+      exportLink.href = `data:application/json,${encodeURIComponent(storageString)}`;
+      exportLink.download = `Outbox Backup @ ${dateString}.json`;
+    });
+};
+
 const onStorageChanged = (changes, areaName) => {
   if (areaName !== 'local') return;
 
@@ -111,6 +128,8 @@ const onStorageChanged = (changes, areaName) => {
     const referenceNode = [...mainElement.children].find(({ dataset: { timestamp } }) => timestamp < newTimestamp);
     mainElement.insertBefore(newNode, referenceNode || null);
   });
+
+  updateExportDownload();
 };
 
 browser.storage.onChanged.addListener(onStorageChanged);
@@ -127,20 +146,7 @@ browser.storage.local.get()
   })
   .finally(() => mainElement.setAttribute('aria-busy', false));
 
-browser.storage.local.get()
-  .then(storageObject => JSON.stringify(storageObject, null, 2))
-  .then(storageString => {
-    const now = new Date();
-
-    const fourDigitYear = now.getFullYear().toString().padStart(4, '0');
-    const twoDigitMonth = (now.getMonth() + 1).toString().padStart(2, '0');
-    const twoDigitDate = now.getDate().toString().padStart(2, '0');
-
-    const dateString = `${fourDigitYear}-${twoDigitMonth}-${twoDigitDate}`;
-
-    exportLink.href = `data:application/json,${encodeURIComponent(storageString)}`;
-    exportLink.download = `Outbox Backup @ ${dateString}.json`;
-  });
+updateExportDownload();
 
 importInput.addEventListener('change', async ({ currentTarget }) => {
   try {
