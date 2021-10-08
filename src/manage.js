@@ -132,23 +132,7 @@ const onStorageChanged = (changes, areaName) => {
   updateExportDownload();
 };
 
-browser.storage.onChanged.addListener(onStorageChanged);
-
-browser.storage.local.get()
-  .then(storageObject => Object.entries(storageObject).sort(([a], [b]) => a - b).reverse())
-  .then(items => mainElement.append(...items.map(constructItem)))
-  .catch(exception => {
-    console.error(exception);
-    mainElement.append(...[
-      Object.assign(document.createElement('p'), { textContent: 'Something went wrong.' }),
-      Object.assign(document.createElement('pre'), { textContent: `${exception}` })
-    ]);
-  })
-  .finally(() => mainElement.setAttribute('aria-busy', false));
-
-updateExportDownload();
-
-importInput.addEventListener('change', async ({ currentTarget }) => {
+const onImportInputChanged = async ({ currentTarget }) => {
   try {
     const { files } = currentTarget;
     const [importedBackup] = files;
@@ -171,4 +155,21 @@ importInput.addEventListener('change', async ({ currentTarget }) => {
     window.alert(exception.toString());
     currentTarget.value = currentTarget.defaultValue;
   }
-});
+};
+
+browser.storage.local.get()
+  .then(storageObject => Object.entries(storageObject).sort(([a], [b]) => a - b).reverse())
+  .then(items => mainElement.append(...items.map(constructItem)))
+  .catch(exception => {
+    console.error(exception);
+    mainElement.append(...[
+      Object.assign(document.createElement('p'), { textContent: 'Something went wrong.' }),
+      Object.assign(document.createElement('pre'), { textContent: `${exception}` })
+    ]);
+  })
+  .finally(() => mainElement.setAttribute('aria-busy', false));
+
+browser.storage.onChanged.addListener(onStorageChanged);
+updateExportDownload();
+
+importInput.addEventListener('change', onImportInputChanged);
