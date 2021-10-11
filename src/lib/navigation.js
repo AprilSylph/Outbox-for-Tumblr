@@ -13,7 +13,7 @@ document.documentElement.addEventListener('keydown', ({ currentTarget, key, targ
       break;
     }
     case 'k': {
-      const targetNode = [...articles].reverse().find(childNode => Math.floor(childNode.getBoundingClientRect().y) < scrollPaddingTop);
+      const targetNode = [...articles].reverse().find(childNode => Math.ceil(childNode.getBoundingClientRect().y) < scrollPaddingTop);
       targetNode?.scrollIntoView();
       targetNode?.focus();
       break;
