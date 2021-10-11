@@ -8,6 +8,7 @@ Save outgoing Tumblr asks automatically.
 
 ## Installation
 - [Get this Extension for Firefox](https://addons.mozilla.org/addon/outbox-for-tumblr/)
+- [View on the Chrome Web Store](https://chrome.google.com/webstore/detail/oeamngjfgbhipkibmgglfdaohochpoej)
 
 ## Usage
 Saving asks and answers is done passively. Open your outbox by clicking on the addon icon in the browser toolbar.
