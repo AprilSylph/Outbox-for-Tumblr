@@ -191,6 +191,13 @@ const blockRenderers = {
         a.append('(video)');
       });
     }
+  },
+
+  paywall ({ title, text }) {
+    return document.createElement('details').tap(details => details.append(
+      Object.assign(document.createElement('summary'), { textContent: title }),
+      Object.assign(document.createElement('p'), { textContent: text })
+    ));
   }
 };
 
