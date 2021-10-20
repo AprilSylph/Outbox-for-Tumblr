@@ -310,7 +310,7 @@ article {
   background-color: rgb(var(--white));
 }
 
-article:focus {
+article:focus-visible {
   box-shadow: 0 0 10px 1px rgb(var(--accent));
   outline: none;
 }
