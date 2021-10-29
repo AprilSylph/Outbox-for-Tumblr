@@ -31,6 +31,10 @@
   "optional_permissions": [
     "<all_urls>"
   ],
+  "options_ui": {
+    "page": "manage.html",
+    "open_in_tab": true
+  },
 
   "minimum_chrome_version": "80",
   "browser_specific_settings": {

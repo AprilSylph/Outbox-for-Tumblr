@@ -1,4 +1,4 @@
-browser.browserAction.onClicked.addListener(() => browser.tabs.create({ url: browser.runtime.getURL('/manage.html') }));
+browser.browserAction.onClicked.addListener(() => browser.runtime.openOptionsPage());
 
 const handledRequests = [];
 
