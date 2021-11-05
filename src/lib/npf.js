@@ -44,6 +44,10 @@ export const renderContent = ({ content: blocks, layout }) => {
     }
   });
 
+  buildLists(content);
+  if (askContent instanceof DocumentFragment) buildLists(askContent);
+  if (details instanceof Element) buildLists(details);
+
   return {
     content,
     ask: askContent ? { content: askContent, ...ask } : undefined
@@ -308,13 +312,13 @@ const splitArray = (array, index) => [
   array.slice(index)
 ];
 
-export const buildLists = parentNode => {
-  const getFirstListItem = () => parentNode.querySelector(':scope > li[data-ordered]');
-  while (getFirstListItem() !== null) {
+const buildLists = parentNode => {
+  const getFirstListItem = () => [...parentNode.children].find(element => element.matches('li[data-ordered]'));
+  while (getFirstListItem() !== undefined) {
     const firstListItem = getFirstListItem();
     const { ordered } = firstListItem.dataset;
 
-    const listElement = document.createElement(ordered === "true" ? 'ol' : 'ul');
+    const listElement = document.createElement(ordered === 'true' ? 'ol' : 'ul');
     parentNode.insertBefore(listElement, firstListItem);
     while (listElement.nextElementSibling?.dataset.ordered === ordered) {
       listElement.append(listElement.nextElementSibling);
