@@ -73,14 +73,12 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
       }));
     }
 
-    askElement.append(...ask.content);
+    askElement.append(ask.content);
     buildLists(askElement);
   }
 
-  if (renderedContent) {
-    bodyElement.append(...renderedContent);
-    buildLists(bodyElement);
-  }
+  bodyElement.append(renderedContent);
+  buildLists(bodyElement);
 
   const footerElement = document.createElement('footer');
   articleElement.appendChild(footerElement);
