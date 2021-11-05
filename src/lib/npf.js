@@ -7,7 +7,7 @@
  */
 
 const keyBy = (array, input) => array.reduce((accumulator, currentValue) => Object.assign(accumulator, { [currentValue[input]]: currentValue }), {});
-Object.prototype.tap = function(f) { f(this); return this; };
+Object.prototype.tap = function (f) { f(this); return this; };
 
 export const renderContent = ({ content: blocks, layout }) => {
   const content = new DocumentFragment();
@@ -35,7 +35,7 @@ export const renderContent = ({ content: blocks, layout }) => {
       askContent.append(...renderRow(row));
     } else if (row.blocks.find(i => i > truncate_after) !== undefined) {
       details = details || document.createElement('details').tap(d => {
-        d.append(document.createElement('summary').tap(s => s.textContent = 'Keep reading'));
+        d.append(document.createElement('summary').tap(s => { s.textContent = 'Keep reading'; }));
         content.append(d);
       });
       details.append(...renderRow(row));
