@@ -74,16 +74,8 @@ const blockRenderers = {
       'unordered-list-item': 'li'
     })[subtype] || 'p');
 
-    const className = {
-      quirky: 'npf_quirky',
-      quote: 'npf_quote',
-      chat: 'npf_chat'
-    }[subtype];
+    if (subtype) Object.assign(element.dataset, { subtype });
 
-    if (subtype === 'ordered-list-item') element.dataset.ordered = true;
-    if (subtype === 'unordered-list-item') element.dataset.ordered = false;
-
-    if (className !== undefined) Object.assign(element, { className });
     element.append(...applyFormatting({ text, formatting }));
 
     return element;
@@ -313,14 +305,14 @@ const splitArray = (array, index) => [
 ];
 
 const buildLists = parentNode => {
-  const getFirstListItem = () => [...parentNode.children].find(element => element.matches('li[data-ordered]'));
+  const getFirstListItem = () => [...parentNode.children].find(element => element.matches('li[data-subtype$="list-item"]'));
   while (getFirstListItem() !== undefined) {
     const firstListItem = getFirstListItem();
-    const { ordered } = firstListItem.dataset;
+    const { subtype } = firstListItem.dataset;
 
-    const listElement = document.createElement(ordered === 'true' ? 'ol' : 'ul');
+    const listElement = document.createElement(subtype === 'ordered-list-item' ? 'ol' : 'ul');
     parentNode.insertBefore(listElement, firstListItem);
-    while (listElement.nextElementSibling?.dataset.ordered === ordered) {
+    while (listElement.nextElementSibling?.dataset.subtype === subtype) {
       listElement.append(listElement.nextElementSibling);
     }
   }
