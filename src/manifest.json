@@ -32,7 +32,7 @@
     "<all_urls>"
   ],
   "options_ui": {
-    "page": "manage.html",
+    "page": "outbox.html",
     "open_in_tab": true
   },
 
