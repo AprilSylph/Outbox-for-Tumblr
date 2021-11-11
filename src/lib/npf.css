@@ -1,4 +1,70 @@
-[data-subtype="heading2"] {
+@font-face {
+  font-family: Calluna;
+  src: url("https://assets.tumblr.com/fonts/calluna/Calluna-Regular-webfont.eot");
+  src:
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-Regular-webfont.eot") format("embedded-opentype"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-Regular-webfont.woff") format("woff"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-Regular-webfont.ttf") format("truetype"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-Regular-webfont.svg") format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Calluna;
+  src: url("https://assets.tumblr.com/fonts/calluna/Calluna-Black-webfont.eot");
+  src:
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-Black-webfont.eot") format("embedded-opentype"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-Black-webfont.woff") format("woff"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-Black-webfont.ttf") format("truetype"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-Black-webfont.svg") format("svg");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Calluna;
+  src: url("https://assets.tumblr.com/fonts/calluna/Calluna-It-webfont.eot");
+  src:
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-It-webfont.eot") format("embedded-opentype"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-It-webfont.woff") format("woff"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-It-webfont.ttf") format("truetype"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-It-webfont.svg") format("svg");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Calluna;
+  src: url("https://assets.tumblr.com/fonts/calluna/Calluna-BoldIt-webfont.eot");
+  src:
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-BoldIt-webfont.eot") format("embedded-opentype"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-BoldIt-webfont.woff") format("woff"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-BoldIt-webfont.ttf") format("truetype"),
+    url("https://assets.tumblr.com/fonts/calluna/Calluna-BoldIt-webfont.svg") format("svg");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Fairwater;
+  src:
+    url("https://assets.tumblr.com/fonts/fairwater/fairwater_script_regular-webfont.woff2") format("woff2"),
+    url("https://assets.tumblr.com/fonts/fairwater/fairwater_script_regular-webfont.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Source Code Pro;
+  src:
+    url("https://assets.tumblr.com/fonts/sourcecodepro/sourcecodepro-regular-webfont.woff2") format("woff2"),
+    url("https://assets.tumblr.com/fonts/sourcecodepro/sourcecodepro-regular-webfont.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+ [data-subtype="heading2"] {
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.3;
