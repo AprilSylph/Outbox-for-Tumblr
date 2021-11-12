@@ -64,7 +64,7 @@
   font-style: normal;
 }
 
- [data-subtype="heading2"] {
+[data-subtype="heading2"] {
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.3;
