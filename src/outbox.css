@@ -355,7 +355,7 @@ article footer button {
 /* NPF elements */
 
 article figure,
-div.row {
+[data-row] {
   max-width: none;
   margin-left: calc(0px - var(--post-padding));
   margin-right: calc(0px - var(--post-padding));
@@ -396,27 +396,22 @@ figure a.gif-attribution {
   text-align: end;
 }
 
-div.row {
-  display: flex;
-  flex-direction: row;
-}
-
-div.row > figure {
+[data-row] > figure {
   flex: 1;
   padding: 0 2px;
   margin-left: 0;
   margin-right: 0;
 }
 
-div.row > figure:first-child {
+[data-row] > figure:first-child {
   padding-left: 0;
 }
 
-div.row > figure:last-child {
+[data-row] > figure:last-child {
   padding-right: 0;
 }
 
-div.row > figure img {
+[data-row] > figure img {
   width: 100%;
   height: 100%;
   object-fit: cover;

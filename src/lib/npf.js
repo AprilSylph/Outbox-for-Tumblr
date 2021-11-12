@@ -21,7 +21,7 @@ export const renderContent = ({ content: blocks, layout }) => {
 
     if (elements.length !== 1) {
       return [document.createElement('div').tap(row => {
-        row.className = `row ${mode ? mode.type : ''}`.trim();
+        row.dataset.row = mode ? mode.type : '';
         row.append(...elements);
       })];
     } else {

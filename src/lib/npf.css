@@ -64,6 +64,11 @@
   font-style: normal;
 }
 
+[data-row] {
+  display: flex;
+  flex-direction: row;
+}
+
 [data-subtype="heading2"] {
   font-size: 1.25rem;
   font-weight: 400;
