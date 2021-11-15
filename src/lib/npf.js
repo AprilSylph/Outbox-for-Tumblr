@@ -168,15 +168,14 @@ const blockRenderers = {
 
   video ({ media, embed_html, url, poster }) {
     if (media) {
-      return document.createElement('figure').tap(f => {
-        f.append(document.createElement('video').tap(video => {
+      return document.createElement('figure').tap(figure => {
+        figure.append(document.createElement('video').tap(video => {
           video.src = media.url;
           video.controls = true;
           video.loop = true;
           poster && (video.poster = poster[0].url);
           video.style.width = '100%';
         }));
-        f.style.margin = 0;
       });
     } else if (embed_html) {
       return { __html: embed_html };
