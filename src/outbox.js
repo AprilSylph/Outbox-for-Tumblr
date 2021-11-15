@@ -94,7 +94,11 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
 
 const updateExportDownload = () => {
   browser.storage.local.get()
-    .then(storageObject => JSON.stringify(storageObject, null, 2))
+    .then(storageObject => {
+      const storageKeys = Object.keys(storageObject);
+      mainElement.dataset.showLimitWarning = storageKeys.length >= 512;
+      return JSON.stringify(storageObject, null, 2);
+    })
     .then(storageString => {
       const now = new Date();
 
