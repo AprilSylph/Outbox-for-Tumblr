@@ -108,18 +108,27 @@ const blockRenderers = {
     });
   },
 
-  link ({ url, title, description }) {
+  link ({ url, display_url, title, description, site_name, poster }) {
     return document.createElement('a').tap(a => {
       a.href = url;
       a.target = '_blank';
-      a.style.display = 'block';
-      a.style.border = '1px dashed';
-      a.style.padding = '0.5em';
-      a.append(document.createElement('h3').tap(h => {
-        h.append(title);
-        h.style.margin = '0 0 0.5em';
-      }));
-      a.append(description);
+
+      const titleElement = document.createElement('h3');
+      titleElement.textContent = title || site_name;
+
+      if (poster !== undefined) {
+        const posterElement = document.createElement('figure');
+        posterElement.style.backgroundImage = `url(${poster[0].url})`;
+        posterElement.append(titleElement);
+        a.append(posterElement);
+      } else {
+        a.append(titleElement);
+      }
+
+      a.append(
+        description ? Object.assign(document.createElement('p'), { textContent: description }) : '',
+        Object.assign(document.createElement('small'), { textContent: title ? site_name : display_url })
+      );
     });
   },
 

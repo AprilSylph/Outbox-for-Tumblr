@@ -412,6 +412,23 @@ article footer button {
   text-align: end;
 }
 
+[data-block="link"] {
+  border: 1px solid rgba(var(--black), 0.25);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+[data-block="link"] figure {
+  border-bottom: 1px solid rgba(var(--black), 0.25);
+}
+
+[data-block="link"] small {
+  color: rgba(var(--black), .65);
+  font-size: 0.78125rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
 article details summary {
   display: block;
   padding: 6px 10px;
