@@ -74,8 +74,6 @@ const blockRenderers = {
       'unordered-list-item': 'li'
     })[subtype] || 'p');
 
-    if (subtype) Object.assign(element.dataset, { subtype });
-
     element.append(...applyFormatting({ text, formatting }));
 
     return element;
@@ -196,7 +194,10 @@ const blockRenderers = {
   }
 };
 
-const renderBlock = block => blockRenderers[block.type](block).tap(element => { element.dataset.block = block.type; });
+const renderBlock = block => blockRenderers[block.type](block).tap(element => {
+  element.dataset.block = block.type;
+  if (block.subtype) element.dataset.subtype = block.subtype;
+});
 
 const applyFormatting = ({ text, formatting = [] }) => {
   if (!formatting.length) {
