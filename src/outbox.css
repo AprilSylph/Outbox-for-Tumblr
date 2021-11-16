@@ -368,18 +368,20 @@ article footer button {
 
 /* NPF elements */
 
-article figure,
-[data-row] {
+[data-row],
+[data-block="image"],
+[data-block="video"] {
   max-width: none;
   margin-left: calc(0px - var(--post-padding));
   margin-right: calc(0px - var(--post-padding));
 }
 
-figure img {
-  width: 100%;
+[data-row] > [data-block] {
+  margin-left: 0;
+  margin-right: 0;
 }
 
-figure a {
+[data-block="image"] a {
   display: block;
   overflow: hidden;
   padding: 0 var(--post-padding);
@@ -393,13 +395,13 @@ figure a {
   white-space: nowrap;
 }
 
-figure a:hover,
-figure a:focus {
+[data-block="image"] a:hover,
+[data-block="image"] a:focus {
   background-color: rgba(var(--accent), 0.07);
   color: rgb(var(--accent));
 }
 
-figure a.gif-attribution {
+[data-block="image"] a.gif-attribution {
   margin-top: calc(var(--post-vertical-spacing) / 2);
   margin-bottom: var(--post-vertical-spacing);
 
@@ -408,27 +410,6 @@ figure a.gif-attribution {
   font-size: 1rem;
   line-height: 1.5;
   text-align: end;
-}
-
-[data-row] > figure {
-  flex: 1;
-  padding: 0 2px;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-[data-row] > figure:first-child {
-  padding-left: 0;
-}
-
-[data-row] > figure:last-child {
-  padding-right: 0;
-}
-
-[data-row] > figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 article details summary {

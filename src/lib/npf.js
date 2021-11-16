@@ -196,7 +196,7 @@ const blockRenderers = {
   }
 };
 
-const renderBlock = block => blockRenderers[block.type](block);
+const renderBlock = block => blockRenderers[block.type](block).tap(element => { element.dataset.block = block.type; });
 
 const applyFormatting = ({ text, formatting = [] }) => {
   if (!formatting.length) {
