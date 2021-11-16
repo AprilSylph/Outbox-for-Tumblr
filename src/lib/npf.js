@@ -35,6 +35,7 @@ export const renderContent = ({ content: blocks, layout }) => {
       askContent.append(...renderRow(row));
     } else if (row.blocks.find(i => i > truncate_after) !== undefined) {
       details = details || document.createElement('details').tap(d => {
+        d.dataset.condensed = '';
         d.append(document.createElement('summary').tap(s => { s.textContent = 'Keep reading'; }));
         content.append(d);
       });
