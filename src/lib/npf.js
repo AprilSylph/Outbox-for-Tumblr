@@ -84,10 +84,12 @@ const blockRenderers = {
     return document.createElement('figure').tap(figure => {
       figure.append(document.createElement('img').tap(img => {
         alt_text && (img.alt = img.title = alt_text);
-        img.srcset = media.filter(m => !m.cropped)
-          .map(m => `${m.url} ${m.width}w`).join(',\n');
-        const [largestWidthMedia] = media.sort(descendBy(i => i.width));
-        img.src = largestWidthMedia.url;
+        img.src = media[0].url;
+        img.srcset = media
+          .filter(({ cropped }) => !cropped)
+          .reverse()
+          .map(({ url, width }) => `${url} ${width}w`)
+          .join(',\n');
       }));
       if (attribution?.url) {
         figure.append(document.createElement('a').tap(a => {
@@ -306,8 +308,6 @@ const ascendBy = (...funcs) => (negativeFirstItem, postiveFirstItem) => {
 
   return 0;
 };
-
-const descendBy = (...funcs) => ascendBy(...funcs.map(func => i => -func(i)));
 
 const splitArray = (array, index) => [
   array.slice(0, index),
