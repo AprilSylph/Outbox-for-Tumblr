@@ -68,7 +68,8 @@ ol {
   list-style-type: decimal;
 }
 
-figure {
+figure,
+audio {
   margin: 0 0 4px;
 }
 

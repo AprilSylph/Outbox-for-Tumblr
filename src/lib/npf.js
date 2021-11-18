@@ -134,39 +134,14 @@ const blockRenderers = {
     });
   },
 
-  audio ({ media, provider, embed_html, url, title, artist }) {
+  audio ({ media, provider, embed_html, url }) {
     if (media && provider === 'tumblr') {
-      return document.createElement('audio').tap(audio => {
-        audio.src = media.url;
-        audio.controls = true;
-        audio.style.width = '100%';
-      });
-    } else if (media && provider === 'bandcamp') {
-      const embed_params = {
-        size: 'medium',
-        bgcol: 'ffffff',
-        linkcol: '0687f5',
-        notracklist: 'true',
-        transparent: 'true',
-        track: /track_id=(\d+)/.exec(media.url)[1]
-      };
-
-      return document.createElement('iframe').tap(iframe => {
-        iframe.src = `https://bandcamp.com/EmbeddedPlayer/${
-          Object.entries(embed_params).map(p => p.join('=')).join('/')
-        }/`;
-        iframe.width = '100%';
-        iframe.height = '120';
-        iframe.frameborder = '0';
-        iframe.allowtransparency = true;
-        iframe.append(document.createElement('a').tap(link => {
-          link.href = url;
-          link.target = '_blank';
-          link.append(`${title} by ${artist}`);
-        }));
+      return Object.assign(document.createElement('audio'), {
+        src: media.url,
+        controls: true
       });
     } else if (embed_html) {
-      return { __html: embed_html };
+      return Object.assign(document.createElement('figure'), { innerHTML: embed_html });
     } else {
       return document.createElement('a').tap(a => {
         a.href = url;
