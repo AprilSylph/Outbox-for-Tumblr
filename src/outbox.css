@@ -69,7 +69,8 @@ ol {
 }
 
 figure,
-audio {
+audio,
+video {
   margin: 0 0 4px;
 }
 

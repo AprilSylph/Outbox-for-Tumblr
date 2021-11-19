@@ -158,12 +158,12 @@ const blockRenderers = {
           video.src = media.url;
           video.controls = true;
           video.loop = true;
+          video.muted = true;
           poster && (video.poster = poster[0].url);
-          video.style.width = '100%';
         }));
       });
     } else if (embed_html) {
-      return { __html: embed_html };
+      return Object.assign(document.createElement('figure'), { innerHTML: embed_html });
     } else {
       return document.createElement('a').tap(a => {
         a.href = url;
