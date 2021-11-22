@@ -45,7 +45,7 @@ export const renderContent = ({ content: blocks, layout }) => {
     }
   });
 
-  [content, askContent, details]
+  [content, askContent]
     .filter(variable => variable instanceof Node)
     .forEach(node => {
       node.normalize();
@@ -292,16 +292,22 @@ const splitArray = (array, index) => [
   array.slice(index)
 ];
 
-const buildLists = parentNode => {
-  const getFirstListItem = () => [...parentNode.children].find(element => element.matches('li[data-subtype$="list-item"]'));
-  while (getFirstListItem() !== undefined) {
-    const firstListItem = getFirstListItem();
-    const { subtype } = firstListItem.dataset;
+const buildLists = rootNode => {
+  const getNextStrayListItem = () =>
+    [...rootNode.children].find(element => element.matches('li')) ||
+    rootNode.querySelector(':not(ul):not(ol) > li');
+
+  let listItem = getNextStrayListItem();
+  while (listItem !== null) {
+    const { parentNode } = listItem;
+    const { subtype } = listItem.dataset;
 
     const listElement = document.createElement(subtype === 'ordered-list-item' ? 'ol' : 'ul');
-    parentNode.insertBefore(listElement, firstListItem);
+    parentNode.insertBefore(listElement, listItem);
     while (listElement.nextElementSibling?.dataset.subtype === subtype) {
       listElement.append(listElement.nextElementSibling);
     }
+
+    listItem = getNextStrayListItem();
   }
 };
