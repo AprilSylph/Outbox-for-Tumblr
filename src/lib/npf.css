@@ -117,6 +117,11 @@
   line-height: 1.3em;
 }
 
+[data-block="text"][data-subtype="unordered-list-item"],
+[data-block="text"][data-subtype="ordered-list-item"] {
+  display: list-item;
+}
+
 [data-block="image"] img {
   width: 100%;
 }
