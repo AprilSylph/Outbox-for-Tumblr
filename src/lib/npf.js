@@ -259,9 +259,9 @@ const formatRenderers = {
     a.href = url;
     a.target = '_blank';
   }),
-  mention: ({ blog: { url } }) => document.createElement('a').tap(a => {
-    a.href = url;
-    a.target = '_blank';
+  mention: ({ blog: { url } }) => Object.assign(document.createElement('a'), {
+    href: /^https?:\/\/.+/.test(url) ? url : `https://${url}/`,
+    target: '_blank'
   }),
   color: ({ hex }) => document.createElement('font').tap(font => {
     font.color = hex;
