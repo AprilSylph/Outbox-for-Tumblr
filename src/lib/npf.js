@@ -78,7 +78,7 @@ const blockRenderers = {
       'unordered-list-item': 'li'
     })[subtype] || 'p');
 
-    element.append(...applyFormatting({ text, formatting }));
+    element.append(applyFormatting({ text, formatting }));
 
     return element;
   },
@@ -202,7 +202,7 @@ const applyFormatting = ({ text, formatting = [] }) => {
   });
   tokens.sort(ascendBy(([, index]) => index));
 
-  const output = document.createElement('span');
+  const output = new DocumentFragment();
   let currentString = [...text];
   let currentStringOffset = 0;
 
@@ -247,7 +247,7 @@ const applyFormatting = ({ text, formatting = [] }) => {
 
   output.append(currentString.join(''));
 
-  return [...output.children];
+  return output;
 };
 
 const formatRenderers = {
@@ -262,7 +262,6 @@ const formatRenderers = {
   mention: ({ blog: { url } }) => document.createElement('a').tap(a => {
     a.href = url;
     a.target = '_blank';
-    a.classList.push('h-card', 'mention');
   }),
   color: ({ hex }) => document.createElement('font').tap(font => {
     font.color = hex;
