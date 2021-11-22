@@ -255,9 +255,9 @@ const formatRenderers = {
   italic: () => document.createElement('em'),
   strikethrough: () => document.createElement('s'),
   small: () => document.createElement('small'),
-  link: ({ url }) => document.createElement('a').tap(a => {
-    a.href = url;
-    a.target = '_blank';
+  link: ({ url }) => Object.assign(document.createElement('a'), {
+    href: /^https?:\/\/.+/.test(url) ? url : `https://${url}`,
+    target: '_blank'
   }),
   mention: ({ blog: { url } }) => Object.assign(document.createElement('a'), {
     href: /^https?:\/\/.+/.test(url) ? url : `https://${url}/`,
