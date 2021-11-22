@@ -73,6 +73,10 @@
   display: block;
 }
 
+[data-block]:empty {
+  display: none;
+}
+
 [data-row] > [data-block] {
   flex: 1;
   padding: 0 2px;
