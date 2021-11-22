@@ -45,9 +45,12 @@ export const renderContent = ({ content: blocks, layout }) => {
     }
   });
 
-  buildLists(content);
-  if (askContent instanceof DocumentFragment) buildLists(askContent);
-  if (details instanceof Element) buildLists(details);
+  [content, askContent, details]
+    .filter(variable => variable instanceof Node)
+    .forEach(node => {
+      node.normalize();
+      buildLists(node);
+    });
 
   return {
     content,
