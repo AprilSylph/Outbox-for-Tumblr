@@ -263,9 +263,7 @@ const formatRenderers = {
     href: /^https?:\/\/.+/.test(url) ? url : `https://${url}/`,
     target: '_blank'
   }),
-  color: ({ hex }) => document.createElement('font').tap(font => {
-    font.color = hex;
-  }),
+  color: ({ hex }) => Object.assign(document.createElement('font'), { color: hex }),
   default: () => document.createElement('span')
 };
 
