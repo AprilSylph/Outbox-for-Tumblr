@@ -179,10 +179,10 @@ const blockRenderers = {
     } else if (embed_html) {
       return Object.assign(document.createElement('figure'), { innerHTML: embed_html });
     } else {
-      return document.createElement('a').tap(a => {
-        a.href = url;
-        a.target = '_blank';
-        a.append('(video)');
+      return Object.assign(document.createElement('a'), {
+        href: url,
+        target: '_blank',
+        textContent: 'Video'
       });
     }
   },
