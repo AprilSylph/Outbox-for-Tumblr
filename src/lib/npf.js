@@ -118,13 +118,13 @@ const blockRenderers = {
     });
   },
 
-  link ({ url, title, description, site_name, display_url, poster }) {
+  link ({ url, title, description, author, siteName, site_name = siteName, displayUrl, display_url = displayUrl, poster }) {
     return document.createElement('a').tap(a => {
       a.href = url;
       a.target = '_blank';
 
       const titleElement = document.createElement('h3');
-      titleElement.textContent = title || site_name;
+      titleElement.textContent = title ?? site_name;
 
       if (poster !== undefined) {
         const posterElement = document.createElement('figure');
@@ -137,7 +137,13 @@ const blockRenderers = {
 
       a.append(
         description ? Object.assign(document.createElement('p'), { textContent: description }) : '',
-        Object.assign(document.createElement('small'), { textContent: title ? site_name : display_url })
+        Object.assign(document.createElement('small'), {
+          textContent: author && site_name
+            ? `${site_name} | ${author}`
+            : title !== undefined && site_name
+              ? site_name
+              : display_url || url
+        })
       );
     });
   },

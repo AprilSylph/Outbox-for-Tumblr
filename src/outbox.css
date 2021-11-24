@@ -423,10 +423,22 @@ article footer button {
   border: 1px solid rgba(var(--black), 0.25);
   border-radius: 7px;
   overflow: hidden;
+  margin: var(--post-vertical-spacing) 0;
 }
 
 [data-block="link"] figure {
   border-bottom: 1px solid rgba(var(--black), 0.25);
+}
+
+[data-block="link"] p {
+  max-height: 3rem;
+  overflow-y: hidden;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  text-overflow: ellipsis;
 }
 
 [data-block="link"] small {
