@@ -73,10 +73,6 @@
   display: block;
 }
 
-[data-block]:empty {
-  display: none;
-}
-
 [data-row] > [data-block] {
   flex: 1;
   padding: 0 2px;
@@ -88,6 +84,10 @@
 
 [data-row] > [data-block]:last-child {
   padding-right: 0;
+}
+
+[data-block="text"]:empty {
+  display: none;
 }
 
 [data-block="text"][data-subtype="heading2"] {
