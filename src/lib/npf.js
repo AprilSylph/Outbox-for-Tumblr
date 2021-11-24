@@ -83,7 +83,7 @@ const blockRenderers = {
     return element;
   },
 
-  image ({ attribution, alt_text, media }) {
+  image ({ attribution, alt_text, caption, media }) {
     return document.createElement('figure').tap(figure => {
       figure.append(document.createElement('img').tap(img => {
         alt_text && (img.alt = img.title = alt_text);
@@ -94,6 +94,7 @@ const blockRenderers = {
           .map(({ url, width }) => `${url} ${width}w`)
           .join(',\n');
       }));
+
       if (attribution?.url) {
         figure.append(document.createElement('a').tap(a => {
           a.href = attribution.url;
@@ -109,6 +110,10 @@ const blockRenderers = {
             a.textContent = attribution.url;
           }
         }));
+      }
+
+      if (caption) {
+        figure.append(Object.assign(document.createElement('figcaption'), { textContent: caption }));
       }
     });
   },

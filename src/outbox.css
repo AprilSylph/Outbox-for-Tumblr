@@ -383,6 +383,11 @@ article footer button {
   margin-right: 0;
 }
 
+[data-block="image"] figcaption {
+  padding: 0 var(--post-padding);
+  margin: calc(var(--post-vertical-spacing) / 2) 0;
+}
+
 [data-block="image"] a {
   display: block;
   overflow: hidden;
