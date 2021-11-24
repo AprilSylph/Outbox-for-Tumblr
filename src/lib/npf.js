@@ -69,7 +69,7 @@ const normalizeRows = (rows, blocks) => {
 };
 
 const blockRenderers = {
-  text ({ subtype, text, formatting }) {
+  text ({ text, subtype, formatting }) {
     const element = document.createElement(({
       heading1: 'h1',
       heading2: 'h2',
@@ -83,7 +83,7 @@ const blockRenderers = {
     return element;
   },
 
-  image ({ attribution, alt_text, caption, media }) {
+  image ({ media, attribution, alt_text, caption }) {
     return document.createElement('figure').tap(figure => {
       figure.append(document.createElement('img').tap(img => {
         alt_text && (img.alt = img.title = alt_text);
@@ -118,7 +118,7 @@ const blockRenderers = {
     });
   },
 
-  link ({ url, display_url, title, description, site_name, poster }) {
+  link ({ url, title, description, site_name, display_url, poster }) {
     return document.createElement('a').tap(a => {
       a.href = url;
       a.target = '_blank';
@@ -142,7 +142,7 @@ const blockRenderers = {
     });
   },
 
-  audio ({ media, provider, embed_html, url }) {
+  audio ({ url, media, provider, embed_html }) {
     if (media && provider === 'tumblr') {
       return Object.assign(document.createElement('audio'), {
         src: media.url,
@@ -159,7 +159,7 @@ const blockRenderers = {
     }
   },
 
-  video ({ media, embed_html, url, poster }) {
+  video ({ url, media, embed_html, poster }) {
     if (media) {
       return document.createElement('figure').tap(figure => {
         figure.append(document.createElement('video').tap(video => {
