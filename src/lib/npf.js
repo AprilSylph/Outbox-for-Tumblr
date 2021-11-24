@@ -148,7 +148,7 @@ const blockRenderers = {
     });
   },
 
-  audio ({ url, media, provider, embed_html }) {
+  audio ({ url, media, provider, title, artist, embed_html }) {
     if (media && provider === 'tumblr') {
       return Object.assign(document.createElement('audio'), {
         src: media.url,
@@ -157,10 +157,10 @@ const blockRenderers = {
     } else if (embed_html) {
       return Object.assign(document.createElement('figure'), { innerHTML: embed_html });
     } else {
-      return document.createElement('a').tap(a => {
-        a.href = url;
-        a.target = '_blank';
-        a.append('(audio)');
+      return Object.assign(document.createElement('a'), {
+        href: url,
+        target: '_blank',
+        textContent: `${title || 'Audio'}${artist ? ` by ${artist}` : ''}`
       });
     }
   },
