@@ -148,7 +148,7 @@ const blockRenderers = {
     });
   },
 
-  audio ({ url, media, provider, title, artist, embed_html }) {
+  audio ({ url, media, provider, title, artist, embedHtml, embed_html = embedHtml }) {
     if (media && provider === 'tumblr') {
       return Object.assign(document.createElement('audio'), {
         src: media.url,
@@ -165,7 +165,7 @@ const blockRenderers = {
     }
   },
 
-  video ({ url, media, embed_html, poster }) {
+  video ({ url, media, embedHtml, embed_html = embedHtml, poster }) {
     if (media) {
       return document.createElement('figure').tap(figure => {
         figure.append(document.createElement('video').tap(video => {
