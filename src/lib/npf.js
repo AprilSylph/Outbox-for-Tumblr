@@ -95,26 +95,8 @@ const blockRenderers = {
           .join(',\n');
       }));
 
-      if (attribution?.url) {
-        figure.append(document.createElement('a').tap(a => {
-          a.href = attribution.url;
-          a.target = '_blank';
-
-          if (attribution.display_text) {
-            a.textContent = attribution.display_text;
-          } else if (attribution.blog?.name) {
-            a.className = 'gif-attribution';
-            a.textContent = 'GIF by ';
-            a.append(Object.assign(document.createElement('strong'), { textContent: attribution.blog.name }));
-          } else {
-            a.textContent = attribution.url;
-          }
-        }));
-      }
-
-      if (caption) {
-        figure.append(Object.assign(document.createElement('figcaption'), { textContent: caption }));
-      }
+      if (attribution) figure.append(renderAttribution(attribution));
+      if (caption) figure.append(Object.assign(document.createElement('figcaption'), { textContent: caption }));
     });
   },
 

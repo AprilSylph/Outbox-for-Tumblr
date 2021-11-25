@@ -388,7 +388,7 @@ article footer button {
   margin: calc(var(--post-vertical-spacing) / 2) 0;
 }
 
-[data-block="image"] a {
+[data-block="image"] [data-attribution] {
   display: block;
   overflow: hidden;
   padding: 0 var(--post-padding);
@@ -402,18 +402,18 @@ article footer button {
   white-space: nowrap;
 }
 
-[data-block="image"] a:hover,
-[data-block="image"] a:focus {
+[data-block="image"] [data-attribution]:hover,
+[data-block="image"] [data-attribution]:focus {
   background-color: rgba(var(--accent), 0.07);
   color: rgb(var(--accent));
 }
 
-[data-block="image"] a.gif-attribution {
+[data-block="image"] [data-attribution="post"] {
   margin-top: calc(var(--post-vertical-spacing) / 2);
   margin-bottom: var(--post-vertical-spacing);
 
-  background-color: transparent;
-  color: rgba(var(--black), 0.65);
+  background-color: transparent !important;
+  color: rgba(var(--black), 0.65) !important;
   font-size: 1rem;
   line-height: 1.5;
   text-align: end;
