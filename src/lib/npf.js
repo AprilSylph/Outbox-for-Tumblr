@@ -281,6 +281,45 @@ const formatRenderers = {
 const renderFormatting = format =>
   (formatRenderers[format.type] || formatRenderers.default)(format);
 
+const attributionRenderers = {
+  post: ({ url, blog: { name, uuid } }) => document.createElement('a').tap(a => {
+    Object.assign(a, { href: url, target: '_blank' });
+    a.append(
+      'Originally posted by ',
+      Object.assign(document.createElement('strong'), { textContent: name || uuid })
+    );
+  }),
+
+  link: ({ url }) => Object.assign(document.createElement('a'), {
+    href: url,
+    target: '_blank',
+    textContent: url
+  }),
+
+  blog: ({ blog: { url, title, name, uuid } }) => document.createElement('p').tap(p => p.append(
+    Object.assign(document.createElement('a'), {
+      href: url,
+      target: '_blank',
+      title,
+      textContent: name || uuid
+    })
+  )),
+
+  app ({ url, appName, app_name = appName, displayText, display_text = displayText, logo }) {
+    const a = Object.assign(document.createElement('a'), {
+      href: url,
+      target: '_blank',
+      textContent: display_text
+    });
+    if (logo) a.append(Object.assign(document.createElement('img'), { src: logo.url }));
+    return a;
+  }
+};
+
+const renderAttribution = attribution => attributionRenderers[attribution.type](attribution).tap(element => {
+  element.dataset.attribution = attribution.type;
+});
+
 const ascendBy = (...funcs) => (negativeFirstItem, postiveFirstItem) => {
   for (const func of funcs) {
     const negativeFirstValue = func(negativeFirstItem);
