@@ -132,7 +132,7 @@ const blockRenderers = {
     });
   },
 
-  audio ({ url, media, provider, title, artist, embedHtml, embed_html = embedHtml, attribution }) {
+  audio ({ url, media, title, artist, embedHtml, embed_html = embedHtml, attribution }) {
     const figure = document.createElement('figure');
 
     if (embed_html) {
