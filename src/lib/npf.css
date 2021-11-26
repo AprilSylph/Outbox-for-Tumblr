@@ -194,22 +194,14 @@
   margin: 10px 0;
 }
 
-[data-block="audio"] {
+[data-block="audio"],
+[data-block="video"] {
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
-[data-block="audio"] iframe {
-  width: 100%;
-}
-
-[data-block="video"] {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-[data-block="video"] video {
+[data-block="audio"] iframe,
+[data-block="video"] iframe {
   width: 100%;
 }

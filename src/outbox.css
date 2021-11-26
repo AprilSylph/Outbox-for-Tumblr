@@ -425,6 +425,10 @@ article footer button {
   text-transform: uppercase;
 }
 
+[data-block="video"] iframe[id="youtube_iframe"] {
+  height: calc(540px * (9/16));
+}
+
 [data-attribution="post"],
 [data-attribution="app"] {
   padding: 0 var(--post-padding);

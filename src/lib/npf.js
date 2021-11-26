@@ -155,26 +155,31 @@ const blockRenderers = {
     return figure;
   },
 
-  video ({ url, media, embedHtml, embed_html = embedHtml, poster }) {
-    if (media) {
-      return document.createElement('figure').tap(figure => {
-        figure.append(document.createElement('video').tap(video => {
-          video.src = media.url;
-          video.controls = true;
-          video.loop = true;
-          video.muted = true;
-          poster && (video.poster = poster[0].url);
-        }));
+  video ({ url, media, embedHtml, embed_html = embedHtml, poster, attribution }) {
+    const figure = document.createElement('figure');
+
+    if (embed_html) {
+      Object.assign(figure, { innerHTML: embed_html });
+    } else if (media) {
+      const video = Object.assign(document.createElement('video'), {
+        src: media.url,
+        controls: true,
+        loop: true,
+        muted: true
       });
-    } else if (embed_html) {
-      return Object.assign(document.createElement('figure'), { innerHTML: embed_html });
+      if (poster) Object.assign(video, { poster: poster[0].url });
+      figure.append(video);
     } else {
-      return Object.assign(document.createElement('a'), {
+      figure.append(Object.assign(document.createElement('a'), {
         href: url,
         target: '_blank',
         textContent: 'Video'
-      });
+      }));
     }
+
+    if (attribution) figure.append(renderAttribution(attribution));
+
+    return figure;
   },
 
   paywall ({ title, text }) {
