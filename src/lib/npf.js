@@ -132,21 +132,27 @@ const blockRenderers = {
     });
   },
 
-  audio ({ url, media, provider, title, artist, embedHtml, embed_html = embedHtml }) {
-    if (media && provider === 'tumblr') {
-      return Object.assign(document.createElement('audio'), {
+  audio ({ url, media, provider, title, artist, embedHtml, embed_html = embedHtml, attribution }) {
+    const figure = document.createElement('figure');
+
+    if (embed_html) {
+      Object.assign(figure, { innerHTML: embed_html });
+    } else if (media) {
+      figure.append(Object.assign(document.createElement('audio'), {
         src: media.url,
         controls: true
-      });
-    } else if (embed_html) {
-      return Object.assign(document.createElement('figure'), { innerHTML: embed_html });
+      }));
     } else {
-      return Object.assign(document.createElement('a'), {
+      figure.append(Object.assign(document.createElement('a'), {
         href: url,
         target: '_blank',
         textContent: `${title || 'Audio'}${artist ? ` by ${artist}` : ''}`
-      });
+      }));
     }
+
+    if (attribution) figure.append(renderAttribution(attribution));
+
+    return figure;
   },
 
   video ({ url, media, embedHtml, embed_html = embedHtml, poster }) {
@@ -295,7 +301,12 @@ const attributionRenderers = {
       target: '_blank',
       textContent: display_text
     });
-    if (logo) a.append(Object.assign(document.createElement('img'), { src: logo.url }));
+
+    if (logo) {
+      a.dataset.hasLogo = true;
+      a.append(Object.assign(document.createElement('img'), { src: logo.url }));
+    }
+
     return a;
   }
 };

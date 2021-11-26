@@ -69,7 +69,8 @@
   flex-direction: row;
 }
 
-[data-block] {
+[data-block],
+[data-attribution] {
   display: block;
 }
 
@@ -194,6 +195,12 @@
 }
 
 [data-block="audio"] {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+[data-block="audio"] iframe {
   width: 100%;
 }
 

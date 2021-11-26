@@ -379,6 +379,7 @@ article footer button {
 
 [data-row],
 [data-block="image"],
+[data-block="audio"],
 [data-block="video"] {
   max-width: none;
   margin-left: calc(0px - var(--post-padding));
@@ -393,37 +394,6 @@ article footer button {
 [data-block="image"] figcaption {
   padding: 0 var(--post-padding);
   margin: calc(var(--post-vertical-spacing) / 2) 0;
-}
-
-[data-block="image"] [data-attribution] {
-  display: block;
-  overflow: hidden;
-  padding: 0 var(--post-padding);
-
-  background-color: rgba(var(--black), 0.07);
-  color: rgba(var(--black), 0.4);
-  font-size: 0.875rem;
-  line-height: 1.875rem;
-  text-decoration: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-[data-block="image"] [data-attribution]:hover,
-[data-block="image"] [data-attribution]:focus {
-  background-color: rgba(var(--accent), 0.07);
-  color: rgb(var(--accent));
-}
-
-[data-block="image"] [data-attribution="post"] {
-  margin-top: calc(var(--post-vertical-spacing) / 2);
-  margin-bottom: var(--post-vertical-spacing);
-
-  background-color: transparent !important;
-  color: rgba(var(--black), 0.65) !important;
-  font-size: 1rem;
-  line-height: 1.5;
-  text-align: end;
 }
 
 [data-block="link"] {
@@ -453,6 +423,52 @@ article footer button {
   font-size: 0.78125rem;
   font-weight: 400;
   text-transform: uppercase;
+}
+
+[data-attribution="post"],
+[data-attribution="app"] {
+  padding: 0 var(--post-padding);
+  margin-top: calc(var(--post-vertical-spacing) / 2);
+  margin-bottom: var(--post-vertical-spacing);
+
+  color: rgba(var(--black), 0.65);
+  text-align: end;
+  text-decoration: none;
+}
+
+[data-attribution="link"] {
+  display: block;
+  overflow: hidden;
+  padding: 0 var(--post-padding);
+
+  background-color: rgba(var(--black), 0.07);
+  color: rgba(var(--black), 0.4);
+  font-size: 0.875rem;
+  line-height: 1.875rem;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-attribution="link"]:hover,
+[data-attribution="link"]:focus {
+  background-color: rgba(var(--accent), 0.07);
+  color: rgb(var(--accent));
+}
+
+[data-attribution="app"][data-has-logo] {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 0.5ch;
+}
+
+[data-attribution="app"] img {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 3px;
+  margin-left: 0.5ch;
 }
 
 article details summary {
