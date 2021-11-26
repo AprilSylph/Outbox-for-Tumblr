@@ -10,11 +10,12 @@ const keyBy = (array, input) => array.reduce((accumulator, currentValue) => Obje
 Object.prototype.tap = function (f) { f(this); return this; };
 
 export const renderContent = ({ content: blocks, layout }) => {
-  const content = new DocumentFragment();
   const { rows, ask } = keyBy(layout, 'type');
   const { truncate_after } = rows || {};
 
-  let askContent, details;
+  const content = new DocumentFragment();
+  const askContent = ask && new DocumentFragment();
+  let details;
 
   const renderRow = ({ blocks: blockIndexes, mode }) => {
     const elements = blockIndexes.map(i => renderBlock(blocks[i]));
@@ -29,9 +30,10 @@ export const renderContent = ({ content: blocks, layout }) => {
     }
   };
 
+  if (askContent && ask.attribution) askContent.append(renderAttribution(ask.attribution));
+
   normalizeRows(rows, blocks).forEach(row => {
     if (ask && row.blocks.find(i => ask.blocks.includes(i)) !== undefined) {
-      askContent = askContent || new DocumentFragment();
       askContent.append(...renderRow(row));
     } else if (row.blocks.find(i => i > truncate_after) !== undefined) {
       details = details || document.createElement('details').tap(d => {

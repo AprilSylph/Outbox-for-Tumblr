@@ -324,14 +324,21 @@ article header a::after {
   border-radius: 3px;
 }
 
-.ask .attribution {
+.ask [data-attribution="blog"]:first-child {
   display: block;
   margin: var(--post-vertical-spacing) 0;
 
   color: rgba(var(--black), 0.65);
   font-size: .875rem;
+}
+
+.ask [data-attribution="blog"]:first-child a {
   font-weight: 700;
   text-decoration: none;
+}
+
+.ask [data-attribution="blog"]:first-child::after {
+  content: " asked:";
 }
 
 p {
