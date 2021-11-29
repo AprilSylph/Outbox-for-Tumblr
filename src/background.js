@@ -1,12 +1,12 @@
 browser.browserAction.onClicked.addListener(() => browser.runtime.openOptionsPage());
 
-const handledRequests = [];
+const handledRequests = new Map();
 
 browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp, url }) => {
-  if (handledRequests.includes(requestId)) {
+  if (handledRequests.has(requestId)) {
     return;
   } else {
-    handledRequests.push(requestId);
+    handledRequests.set(requestId, timeStamp);
   }
 
   if (['POST', 'PUT'].includes(method) === false) { return; }
@@ -39,10 +39,10 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId
 ]);
 
 browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp }) => {
-  if (handledRequests.includes(requestId)) {
+  if (handledRequests.has(requestId)) {
     return;
   } else {
-    handledRequests.push(requestId);
+    handledRequests.set(requestId, timeStamp);
   }
 
   if (method !== 'POST') { return; }
@@ -68,10 +68,10 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId
 ]);
 
 browser.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBody: { formData }, requestId, timeStamp, url }) => {
-  if (handledRequests.includes(requestId)) {
+  if (handledRequests.has(requestId)) {
     return;
   } else {
-    handledRequests.push(requestId);
+    handledRequests.set(requestId, timeStamp);
   }
 
   if (method !== 'POST') { return; }
@@ -99,6 +99,38 @@ browser.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBo
 }, [
   'requestBody'
 ]);
+
+browser.webRequest.onErrorOccurred.addListener(async ({ requestId }) => {
+  if (handledRequests.has(requestId)) {
+    const timeStamp = handledRequests.get(requestId);
+    const { [timeStamp]: item } = await browser.storage.local.get(timeStamp.toString());
+    item.error = true;
+    browser.storage.local.set({ [timeStamp]: item });
+  }
+}, {
+  urls: [
+    '*://www.tumblr.com/api/v2/blog/*/posts',
+    '*://www.tumblr.com/api/v2/blog/*/posts/*',
+    '*://www.tumblr.com/svc/post/ask',
+    '*://www.tumblr.com/ask_form/*?t='
+  ]
+});
+
+browser.webRequest.onCompleted.addListener(async ({ requestId, statusCode }) => {
+  if (/[45]\d\d/.test(statusCode) && handledRequests.has(requestId)) {
+    const timeStamp = handledRequests.get(requestId);
+    const { [timeStamp]: item } = await browser.storage.local.get(timeStamp.toString());
+    item.error = true;
+    browser.storage.local.set({ [timeStamp]: item });
+  }
+}, {
+  urls: [
+    '*://www.tumblr.com/api/v2/blog/*/posts',
+    '*://www.tumblr.com/api/v2/blog/*/posts/*',
+    '*://www.tumblr.com/svc/post/ask',
+    '*://www.tumblr.com/ask_form/*?t='
+  ]
+});
 
 browser.storage.onChanged.addListener(async (changes, areaName) => {
   const storageObject = await browser.storage[areaName].get();

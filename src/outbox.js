@@ -24,7 +24,7 @@ const onDeleteButtonClicked = ({ currentTarget }) => {
   browser.storage.local.remove(timestamp);
 };
 
-const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]) => {
+const constructItem = ([timestamp, { recipient, recipientUrl, error, content, layout }]) => {
   const articleElement = Object.assign(document.createElement('article'), { tabIndex: -1 });
   Object.assign(articleElement.dataset, { timestamp });
 
@@ -36,6 +36,13 @@ const constructItem = ([timestamp, { recipient, recipientUrl, content, layout }]
       href: recipientUrl || `https://${recipient}.tumblr.com/`,
       target: '_blank',
       textContent: recipient || recipientUrl
+    }));
+  }
+
+  if (error) {
+    articleElement.append(Object.assign(document.createElement('section'), {
+      className: 'error',
+      textContent: 'This item could not be sent. You will need to retry manually.'
     }));
   }
 

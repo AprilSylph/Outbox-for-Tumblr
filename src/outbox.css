@@ -8,6 +8,8 @@
   --black: 0, 0, 0;
   --accent: 0, 0, 0;
 
+  --red: #ff492f;
+
   font-size: 16px;
   line-height: 1.5;
   scroll-padding-top: var(--post-margin);
@@ -146,7 +148,7 @@ main[data-show-limit-warning="true"]::before {
   border-radius: 6px;
   margin-top: var(--post-margin);
 
-  background-color: #ff492f;
+  background-color: var(--red);
   color: rgb(var(--background));
   text-align: center;
   white-space: pre-line;
@@ -290,6 +292,17 @@ article header a::before {
 article header a::after {
   content: ":";
   opacity: 0.65;
+}
+
+article section.error {
+  max-width: none;
+  padding: 0.5ch var(--post-padding);
+  margin-left: calc(0px - var(--post-padding));
+  margin-right: calc(0px - var(--post-padding));
+
+  background-color: var(--red);
+  color: rgb(var(--background));
+  text-align: center;
 }
 
 .ask-wrapper {
