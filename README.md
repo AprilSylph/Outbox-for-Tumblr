@@ -12,7 +12,7 @@ Save outgoing Tumblr asks automatically.
 -- | --
 
 ## Installation
-- [Get this Extension for Firefox](https://addons.mozilla.org/addon/outbox-for-tumblr/)
+- [Get this extension for Firefox](https://addons.mozilla.org/addon/outbox-for-tumblr/)
 - [View on the Chrome Web Store](https://chrome.google.com/webstore/detail/oeamngjfgbhipkibmgglfdaohochpoej)
 
 ## Usage
