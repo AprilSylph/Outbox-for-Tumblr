@@ -112,12 +112,20 @@ const onStorageChanged = (changes, areaName) => {
   deletedKeys.forEach(deletedKey => mainElement.querySelector(`:scope > article[data-timestamp="${deletedKey}"]`)?.remove());
 
   const changedEntries = Object.entries(changes);
+
   const newEntries = changedEntries.filter(([key]) => changes[key].oldValue === undefined);
   const newItems = newEntries.map(([key, { newValue }]) => [key, newValue]).map(constructItem);
   newItems.forEach(newNode => {
     const newTimestamp = newNode.dataset.timestamp;
     const referenceNode = [...mainElement.children].find(({ dataset: { timestamp } }) => timestamp < newTimestamp);
     mainElement.insertBefore(newNode, referenceNode || null);
+  });
+
+  const modifiedEntries = changedEntries.filter(([key]) => changes[key].oldValue !== undefined && changes[key].newValue !== undefined);
+  const modifiedItems = modifiedEntries.map(([key, { newValue }]) => [key, newValue]).map(constructItem);
+  modifiedItems.forEach(newNode => {
+    const oldNode = mainElement.querySelector(`:scope > article[data-timestamp="${newNode.dataset.timestamp}"]`);
+    oldNode?.replaceWith(newNode);
   });
 
   updateExportDownload();
