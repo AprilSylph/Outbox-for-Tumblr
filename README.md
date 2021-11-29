@@ -6,6 +6,11 @@ Save outgoing Tumblr asks automatically.
 - Save asks you send from `*.tumblr.com/ask` pages
 - Save answers you send privately
 
+## Screenshots
+
+![](https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/main/assets/screenshots/dark.png) | ![](https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/main/assets/screenshots/light.png)
+-- | --
+
 ## Installation
 - [Get this Extension for Firefox](https://addons.mozilla.org/addon/outbox-for-tumblr/)
 - [View on the Chrome Web Store](https://chrome.google.com/webstore/detail/oeamngjfgbhipkibmgglfdaohochpoej)
