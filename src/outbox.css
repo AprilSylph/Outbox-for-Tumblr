@@ -49,7 +49,7 @@ a {
 }
 
 iframe { display: block; }
-small { font-size: small; }
+small { font-size: 0.8125em; }
 
 blockquote {
   padding-left: var(--post-padding);
