@@ -134,6 +134,8 @@ const onStorageChanged = (changes, areaName) => {
 const onImportInputChanged = async ({ currentTarget }) => {
   try {
     const { files } = currentTarget;
+    if (files.length === 0) return;
+
     const [importedBackup] = files;
 
     if (importedBackup.type !== 'application/json') {
@@ -152,6 +154,7 @@ const onImportInputChanged = async ({ currentTarget }) => {
     await browser.storage.local.set(storageObject);
   } catch (exception) {
     window.alert(exception.toString());
+  } finally {
     currentTarget.value = currentTarget.defaultValue;
   }
 };
