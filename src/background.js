@@ -23,7 +23,7 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId
 
   const hasContent = Array.isArray(content);
   const isAsk = state === 'ask';
-  const isPrivateAnswer = state === undefined && isPrivate === true && layout[0].type === 'ask';
+  const isPrivateAnswer = state === undefined && isPrivate === true && layout.some(({ type }) => type === 'ask');
 
   if (hasContent && (isAsk || isPrivateAnswer)) {
     browser.storage.local.set({ [timeStamp]: { recipient, content, layout } });
