@@ -155,8 +155,21 @@ const blockRenderers = {
     return figure;
   },
 
-  video ({ url, media, embedHtml, embed_html = embedHtml, poster, attribution }) {
+  video ({
+    url,
+    media,
+    embedHtml,
+    embed_html = embedHtml,
+    embedIframe,
+    embed_iframe = embedIframe,
+    poster,
+    attribution
+  }) {
     const figure = document.createElement('figure');
+    if (embed_iframe) {
+      const { width, height } = embed_iframe;
+      if (width && height) figure.style.setProperty('--aspect-ratio', `calc(${height} / ${width})`);
+    }
 
     if (embed_html) {
       Object.assign(figure, { innerHTML: embed_html });

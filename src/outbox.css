@@ -438,8 +438,9 @@ article footer button {
   text-transform: uppercase;
 }
 
-[data-block="video"] iframe[id="youtube_iframe"] {
-  height: calc(540px * (9/16));
+[data-block="video"] iframe {
+  --post-width: min(540px, 100vw);
+  height: calc(var(--post-width) * var(--aspect-ratio, calc(9 / 16)));
 }
 
 [data-attribution="post"],
