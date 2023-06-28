@@ -200,13 +200,19 @@ const blockRenderers = {
       Object.assign(document.createElement('summary'), { textContent: title }),
       Object.assign(document.createElement('p'), { textContent: text })
     ));
+  },
+
+  default ({ type }) {
+    console.warn(`Unknown block type: "${type}"`);
+    return document.createElement('div');
   }
 };
 
-const renderBlock = block => blockRenderers[block.type](block).tap(element => {
-  element.dataset.block = block.type;
-  if (block.subtype) element.dataset.subtype = block.subtype;
-});
+const renderBlock = block =>
+  (blockRenderers[block.type] || blockRenderers.default)(block).tap(element => {
+    element.dataset.block = block.type;
+    if (block.subtype) element.dataset.subtype = block.subtype;
+  });
 
 const applyFormatting = ({ text, formatting = [] }) => {
   if (!formatting.length) {
@@ -326,12 +332,18 @@ const attributionRenderers = {
     }
 
     return a;
+  },
+
+  default ({ type }) {
+    console.warn(`Unknown attribution type: "${type}"`);
+    return document.createElement('span');
   }
 };
 
-const renderAttribution = attribution => attributionRenderers[attribution.type](attribution).tap(element => {
-  element.dataset.attribution = attribution.type;
-});
+const renderAttribution = attribution =>
+  (attributionRenderers[attribution.type] || attributionRenderers.default)(attribution).tap(element => {
+    element.dataset.attribution = attribution.type;
+  });
 
 const ascendBy = (...funcs) => (negativeFirstItem, postiveFirstItem) => {
   for (const func of funcs) {
