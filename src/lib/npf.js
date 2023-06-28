@@ -289,7 +289,11 @@ const formatRenderers = {
     target: '_blank'
   }),
   color: ({ hex }) => Object.assign(document.createElement('font'), { color: hex }),
-  default: () => document.createElement('span')
+
+  default ({ type }) {
+    console.warn(`Unknown formatting type: "${type}"`);
+    return document.createElement('span');
+  }
 };
 
 const renderFormatting = format =>
