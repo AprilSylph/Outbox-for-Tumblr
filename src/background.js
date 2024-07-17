@@ -1,4 +1,8 @@
-browser.browserAction.onClicked.addListener(() => browser.runtime.openOptionsPage());
+if (typeof browser === 'undefined') {
+  globalThis.browser = chrome;
+}
+
+browser.action.onClicked.addListener(() => browser.runtime.openOptionsPage());
 
 const handledRequests = new Map();
 

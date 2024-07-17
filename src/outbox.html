@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="lib/npf.css">
     <link rel="stylesheet" href="outbox.css">
     <link rel="stylesheet" href="https://assets.tumblr.com/fonts/favorit/stylesheet.css">
-    <script src="lib/browser-polyfill.min.js"></script>
     <script type="module" src="outbox.js"></script>
     <script type="module" src="lib/navigation.js"></script>
   </head>
   <body>
+    <header id="permissions-banner" hidden>
+      &#x26A0;&#xFE0F; Outbox for Tumblr needs additional permissions in order to save Tumblr asks automatically.
+      <button id="grant-host-permission">Always allow on www.tumblr.com</button>
+    </header>
     <div id="base-container">
       <aside></aside>
       <main aria-busy="true"></main>
@@ -31,6 +34,12 @@
             <li><a href="https://github.com/AprilSylph/Outbox-for-Tumblr/releases" target="_blank">Changelog</a></li>
             <li><a href="https://github.com/AprilSylph/Outbox-for-Tumblr/issues" target="_blank">Issue tracker</a></li>
             <li><a href="https://github.com/AprilSylph/Outbox-for-Tumblr" target="_blank">Source code</a></li>
+          </ul>
+        </section>
+        <section id="all-urls-section" hidden>
+          <h1>Custom Domains</h1>
+          <ul>
+            <li><a id="grant-all-urls" href="#0">Enable on custom domains</a></li>
           </ul>
         </section>
       </aside>
