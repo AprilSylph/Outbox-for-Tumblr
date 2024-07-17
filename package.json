@@ -2,6 +2,7 @@
   "license": "GPL-3.0",
   "repository": "github:AprilSylph/Outbox-for-Tumblr",
   "scripts": {
+    "start": "web-ext run",
     "test": "eslint . && web-ext lint",
     "lint-webextension": "web-ext lint",
     "build-webextension": "web-ext build",
