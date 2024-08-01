@@ -1,5 +1,12 @@
-browser.browserAction.onClicked.addListener(() => browser.runtime.openOptionsPage());
+if (typeof browser === 'undefined') {
+  globalThis.browser = chrome;
+}
 
+browser.action.onClicked.addListener(() => browser.runtime.openOptionsPage());
+
+// todo:
+// global variable in non-persistent background script potentially problematic
+// may need to store requestId in storage to make error handling 100% reliable
 const handledRequests = new Map();
 
 browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp, url }) => {
