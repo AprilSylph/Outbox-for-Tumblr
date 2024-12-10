@@ -42,7 +42,7 @@
     "open_in_tab": true
   },
 
-  "minimum_chrome_version": "102",
+  "minimum_chrome_version": "103",
   "browser_specific_settings": {
     "gecko": {
       "id": "{ff20bd71-d65d-439f-b48a-c12627f3f2a3}",
