@@ -45,6 +45,7 @@
   "minimum_chrome_version": "102",
   "browser_specific_settings": {
     "gecko": {
+      "id": "{ff20bd71-d65d-439f-b48a-c12627f3f2a3}",
       "strict_min_version": "128.0"
     }
   }
