@@ -1,4 +1,4 @@
-chrome.browserAction.onClicked.addListener(() => chrome.runtime.openOptionsPage());
+chrome.action.onClicked.addListener(() => chrome.runtime.openOptionsPage());
 
 const handledRequests = new Map();
 
