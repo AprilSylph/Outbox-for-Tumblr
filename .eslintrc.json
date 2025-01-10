@@ -1,12 +1,14 @@
 {
   "env": {
     "browser": true,
-    "es2021": true,
-    "webextensions": true
+    "es2021": true
   },
   "extends": [
     "semistandard"
   ],
+  "globals": {
+    "chrome": "readonly"
+  },
   "parserOptions": {
     "ecmaVersion": 12
   },
@@ -19,8 +21,5 @@
         "no-extend-native": "off"
       }
     }
-  ],
-  "ignorePatterns": [
-    "*.min.js"
   ]
 }

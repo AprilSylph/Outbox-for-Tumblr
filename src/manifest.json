@@ -19,7 +19,7 @@
   },
 
   "background": {
-    "scripts": [ "lib/browser-polyfill.min.js", "background.js" ],
+    "scripts": [ "background.js" ],
     "persistent": true
   },
   "homepage_url": "https://github.com/AprilSylph/Outbox-for-Tumblr#readme",
