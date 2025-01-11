@@ -1,11 +1,12 @@
 chrome.action.onClicked.addListener(() => chrome.runtime.openOptionsPage());
 
-chrome.webRequest.onBeforeRequest.addListener(async ({ method, requestBody, requestId, timeStamp, url }) => {
-  const { [requestId]: savedTimeStamp } = await chrome.storage.session.get(requestId);
-  if (savedTimeStamp) {
+const handledRequests = new Map();
+
+chrome.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp, url }) => {
+  if (handledRequests.has(requestId)) {
     return;
   } else {
-    chrome.storage.session.set({ [requestId]: timeStamp });
+    handledRequests.set(requestId, timeStamp);
   }
 
   if (['POST', 'PUT'].includes(method) === false) { return; }
@@ -37,12 +38,11 @@ chrome.webRequest.onBeforeRequest.addListener(async ({ method, requestBody, requ
   'requestBody'
 ]);
 
-chrome.webRequest.onBeforeRequest.addListener(async ({ method, requestBody, requestId, timeStamp }) => {
-  const { [requestId]: savedTimeStamp } = await chrome.storage.session.get(requestId);
-  if (savedTimeStamp) {
+chrome.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp }) => {
+  if (handledRequests.has(requestId)) {
     return;
   } else {
-    chrome.storage.session.set({ [requestId]: timeStamp });
+    handledRequests.set(requestId, timeStamp);
   }
 
   if (method !== 'POST') { return; }
@@ -67,12 +67,11 @@ chrome.webRequest.onBeforeRequest.addListener(async ({ method, requestBody, requ
   'requestBody'
 ]);
 
-chrome.webRequest.onBeforeRequest.addListener(async ({ documentUrl, method, requestBody: { formData }, requestId, timeStamp, url }) => {
-  const { [requestId]: savedTimeStamp } = await chrome.storage.session.get(requestId);
-  if (savedTimeStamp) {
+chrome.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBody: { formData }, requestId, timeStamp, url }) => {
+  if (handledRequests.has(requestId)) {
     return;
   } else {
-    chrome.storage.session.set({ [requestId]: timeStamp });
+    handledRequests.set(requestId, timeStamp);
   }
 
   if (method !== 'POST') { return; }
@@ -102,8 +101,8 @@ chrome.webRequest.onBeforeRequest.addListener(async ({ documentUrl, method, requ
 ]);
 
 chrome.webRequest.onErrorOccurred.addListener(async ({ requestId }) => {
-  const { [requestId]: timeStamp } = await chrome.storage.session.get(requestId);
-  if (timeStamp) {
+  if (handledRequests.has(requestId)) {
+    const timeStamp = handledRequests.get(requestId);
     const { [timeStamp]: item } = await chrome.storage.local.get(timeStamp.toString());
     item.error = true;
     chrome.storage.local.set({ [timeStamp]: item });
@@ -118,8 +117,8 @@ chrome.webRequest.onErrorOccurred.addListener(async ({ requestId }) => {
 });
 
 chrome.webRequest.onCompleted.addListener(async ({ requestId, statusCode }) => {
-  const { [requestId]: timeStamp } = await chrome.storage.session.get(requestId);
-  if (/[45]\d\d/.test(statusCode) && timeStamp) {
+  if (/[45]\d\d/.test(statusCode) && handledRequests.has(requestId)) {
+    const timeStamp = handledRequests.get(requestId);
     const { [timeStamp]: item } = await chrome.storage.local.get(timeStamp.toString());
     item.error = true;
     chrome.storage.local.set({ [timeStamp]: item });
