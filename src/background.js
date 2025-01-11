@@ -7,6 +7,7 @@ chrome.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId,
     return;
   } else {
     handledRequests.set(requestId, timeStamp);
+    chrome.storage.session.set({ [requestId]: timeStamp });
   }
 
   if (['POST', 'PUT'].includes(method) === false) { return; }
@@ -43,6 +44,7 @@ chrome.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId,
     return;
   } else {
     handledRequests.set(requestId, timeStamp);
+    chrome.storage.session.set({ [requestId]: timeStamp });
   }
 
   if (method !== 'POST') { return; }
@@ -72,6 +74,7 @@ chrome.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBod
     return;
   } else {
     handledRequests.set(requestId, timeStamp);
+    chrome.storage.session.set({ [requestId]: timeStamp });
   }
 
   if (method !== 'POST') { return; }
@@ -101,8 +104,11 @@ chrome.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBod
 ]);
 
 chrome.webRequest.onErrorOccurred.addListener(async ({ requestId }) => {
-  if (handledRequests.has(requestId)) {
-    const timeStamp = handledRequests.get(requestId);
+  const timeStamp =
+    handledRequests.get(requestId) ??
+    await chrome.storage.session.get(requestId).then(({ [requestId]: timeStamp }) => timeStamp);
+
+  if (timeStamp) {
     const { [timeStamp]: item } = await chrome.storage.local.get(timeStamp.toString());
     item.error = true;
     chrome.storage.local.set({ [timeStamp]: item });
@@ -117,8 +123,11 @@ chrome.webRequest.onErrorOccurred.addListener(async ({ requestId }) => {
 });
 
 chrome.webRequest.onCompleted.addListener(async ({ requestId, statusCode }) => {
-  if (/[45]\d\d/.test(statusCode) && handledRequests.has(requestId)) {
-    const timeStamp = handledRequests.get(requestId);
+  const timeStamp =
+    handledRequests.get(requestId) ??
+    await chrome.storage.session.get(requestId).then(({ [requestId]: timeStamp }) => timeStamp);
+
+  if (/[45]\d\d/.test(statusCode) && timeStamp) {
     const { [timeStamp]: item } = await chrome.storage.local.get(timeStamp.toString());
     item.error = true;
     chrome.storage.local.set({ [timeStamp]: item });
