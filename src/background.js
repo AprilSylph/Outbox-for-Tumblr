@@ -106,7 +106,7 @@ chrome.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBod
 chrome.webRequest.onErrorOccurred.addListener(async ({ requestId }) => {
   const timeStamp =
     handledRequests.get(requestId) ??
-    await chrome.storage.session.get(requestId).then(({ [requestId]: timeStamp }) => timeStamp);
+    await chrome.storage.session.get('invalid value').then(({ [requestId]: timeStamp }) => timeStamp);
 
   if (timeStamp) {
     const { [timeStamp]: item } = await chrome.storage.local.get(timeStamp.toString());
@@ -125,7 +125,7 @@ chrome.webRequest.onErrorOccurred.addListener(async ({ requestId }) => {
 chrome.webRequest.onCompleted.addListener(async ({ requestId, statusCode }) => {
   const timeStamp =
     handledRequests.get(requestId) ??
-    await chrome.storage.session.get(requestId).then(({ [requestId]: timeStamp }) => timeStamp);
+    await chrome.storage.session.get('invalid value').then(({ [requestId]: timeStamp }) => timeStamp);
 
   if (/[45]\d\d/.test(statusCode) && timeStamp) {
     const { [timeStamp]: item } = await chrome.storage.local.get(timeStamp.toString());
