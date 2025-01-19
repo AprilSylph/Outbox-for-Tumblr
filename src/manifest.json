@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Outbox for Tumblr",
   "version": "1.0.4",
 
@@ -10,7 +10,7 @@
     "128": "icons/128.png"
   },
 
-  "browser_action": {
+  "action": {
     "default_icon": {
       "16": "icons/16.png",
       "48": "icons/48.png",
@@ -19,16 +19,18 @@
   },
 
   "background": {
-    "scripts": [ "lib/browser-polyfill.min.js", "background.js" ],
-    "persistent": true
+    "service_worker": "background.js",
+    "scripts": [ "background.js" ]
   },
   "homepage_url": "https://github.com/AprilSylph/Outbox-for-Tumblr#readme",
   "permissions": [
     "storage",
-    "webRequest",
+    "webRequest"
+  ],
+  "host_permissions": [
     "*://*.tumblr.com/*"
   ],
-  "optional_permissions": [
+  "optional_host_permissions": [
     "<all_urls>"
   ],
   "options_ui": {
@@ -36,10 +38,11 @@
     "open_in_tab": true
   },
 
-  "minimum_chrome_version": "80",
+  "minimum_chrome_version": "121",
   "browser_specific_settings": {
     "gecko": {
-      "strict_min_version": "74.0a1"
+      "id": "{ff20bd71-d65d-439f-b48a-c12627f3f2a3}",
+      "strict_min_version": "128.0"
     }
   }
 }

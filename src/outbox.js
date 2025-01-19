@@ -21,7 +21,7 @@ const onDeleteButtonClicked = ({ currentTarget }) => {
 
   const articleElement = currentTarget.closest('article');
   const { timestamp } = articleElement.dataset;
-  browser.storage.local.remove(timestamp);
+  chrome.storage.local.remove(timestamp);
 };
 
 const constructItem = ([timestamp, { recipient, recipientUrl, error, content, layout }]) => {
@@ -84,7 +84,7 @@ const constructItem = ([timestamp, { recipient, recipientUrl, error, content, la
 };
 
 const updateExportDownload = () => {
-  browser.storage.local.get()
+  chrome.storage.local.get()
     .then(storageObject => {
       const storageKeys = Object.keys(storageObject);
       mainElement.dataset.showLimitWarning = storageKeys.length >= 512;
@@ -151,7 +151,7 @@ const onImportInputChanged = async ({ currentTarget }) => {
     if (!keysAreValid) throw new Error('Imported data contains invalid keys.');
     if (!valuesAreValid) throw new Error('Imported data contains invalid values.');
 
-    await browser.storage.local.set(storageObject);
+    await chrome.storage.local.set(storageObject);
   } catch (exception) {
     window.alert(exception.toString());
   } finally {
@@ -159,7 +159,7 @@ const onImportInputChanged = async ({ currentTarget }) => {
   }
 };
 
-browser.storage.local.get()
+chrome.storage.local.get()
   .then(storageObject => Object.entries(storageObject).sort(([a], [b]) => a - b).reverse())
   .then(items => mainElement.append(...items.map(constructItem)))
   .catch(exception => {
@@ -171,7 +171,7 @@ browser.storage.local.get()
   })
   .finally(() => mainElement.setAttribute('aria-busy', false));
 
-browser.storage.onChanged.addListener(onStorageChanged);
+chrome.storage.onChanged.addListener(onStorageChanged);
 updateExportDownload();
 
 importInput.addEventListener('change', onImportInputChanged);
