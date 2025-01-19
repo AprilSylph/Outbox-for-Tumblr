@@ -1,12 +1,13 @@
-browser.browserAction.onClicked.addListener(() => browser.runtime.openOptionsPage());
+chrome.action.onClicked.addListener(() => chrome.runtime.openOptionsPage());
 
 const handledRequests = new Map();
 
-browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp, url }) => {
+chrome.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp, url }) => {
   if (handledRequests.has(requestId)) {
     return;
   } else {
     handledRequests.set(requestId, timeStamp);
+    chrome.storage.session.set({ [requestId]: timeStamp });
   }
 
   if (['POST', 'PUT'].includes(method) === false) { return; }
@@ -26,7 +27,7 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId
   const isPrivateAnswer = state === undefined && isPrivate === true && layout.some(({ type }) => type === 'ask');
 
   if (hasContent && (isAsk || isPrivateAnswer)) {
-    browser.storage.local.set({ [timeStamp]: { recipient, content, layout } });
+    chrome.storage.local.set({ [timeStamp]: { recipient, content, layout } });
   }
 }, {
   urls: [
@@ -38,11 +39,12 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId
   'requestBody'
 ]);
 
-browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp }) => {
+chrome.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId, timeStamp }) => {
   if (handledRequests.has(requestId)) {
     return;
   } else {
     handledRequests.set(requestId, timeStamp);
+    chrome.storage.session.set({ [requestId]: timeStamp });
   }
 
   if (method !== 'POST') { return; }
@@ -53,7 +55,7 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId
   const parsedData = JSON.parse(decodedData);
   const { question, recipient } = parsedData;
 
-  browser.storage.local.set({
+  chrome.storage.local.set({
     [timeStamp]: {
       recipient,
       content: [{ type: 'text', text: question, formatting: [] }],
@@ -67,11 +69,12 @@ browser.webRequest.onBeforeRequest.addListener(({ method, requestBody, requestId
   'requestBody'
 ]);
 
-browser.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBody: { formData }, requestId, timeStamp, url }) => {
+chrome.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBody: { formData }, requestId, timeStamp, url }) => {
   if (handledRequests.has(requestId)) {
     return;
   } else {
     handledRequests.set(requestId, timeStamp);
+    chrome.storage.session.set({ [requestId]: timeStamp });
   }
 
   if (method !== 'POST') { return; }
@@ -86,7 +89,7 @@ browser.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBo
     recipientUrl = `${protocol}//${pathname.replace('/ask_form/', '')}/`;
   }
 
-  browser.storage.local.set({
+  chrome.storage.local.set({
     [timeStamp]: {
       recipientUrl,
       content: formData['post[one]'].map(text => ({ type: 'text', text, formatting: [] })),
@@ -100,12 +103,15 @@ browser.webRequest.onBeforeRequest.addListener(({ documentUrl, method, requestBo
   'requestBody'
 ]);
 
-browser.webRequest.onErrorOccurred.addListener(async ({ requestId }) => {
-  if (handledRequests.has(requestId)) {
-    const timeStamp = handledRequests.get(requestId);
-    const { [timeStamp]: item } = await browser.storage.local.get(timeStamp.toString());
+chrome.webRequest.onErrorOccurred.addListener(async ({ requestId }) => {
+  const timeStamp =
+    handledRequests.get(requestId) ??
+    await chrome.storage.session.get(requestId).then(({ [requestId]: timeStamp }) => timeStamp);
+
+  if (timeStamp) {
+    const { [timeStamp]: item } = await chrome.storage.local.get(timeStamp.toString());
     item.error = true;
-    browser.storage.local.set({ [timeStamp]: item });
+    chrome.storage.local.set({ [timeStamp]: item });
   }
 }, {
   urls: [
@@ -116,12 +122,15 @@ browser.webRequest.onErrorOccurred.addListener(async ({ requestId }) => {
   ]
 });
 
-browser.webRequest.onCompleted.addListener(async ({ requestId, statusCode }) => {
-  if (/[45]\d\d/.test(statusCode) && handledRequests.has(requestId)) {
-    const timeStamp = handledRequests.get(requestId);
-    const { [timeStamp]: item } = await browser.storage.local.get(timeStamp.toString());
+chrome.webRequest.onCompleted.addListener(async ({ requestId, statusCode }) => {
+  const timeStamp =
+    handledRequests.get(requestId) ??
+    await chrome.storage.session.get(requestId).then(({ [requestId]: timeStamp }) => timeStamp);
+
+  if (/[45]\d\d/.test(statusCode) && timeStamp) {
+    const { [timeStamp]: item } = await chrome.storage.local.get(timeStamp.toString());
     item.error = true;
-    browser.storage.local.set({ [timeStamp]: item });
+    chrome.storage.local.set({ [timeStamp]: item });
   }
 }, {
   urls: [
@@ -132,10 +141,10 @@ browser.webRequest.onCompleted.addListener(async ({ requestId, statusCode }) => 
   ]
 });
 
-browser.storage.onChanged.addListener(async (changes, areaName) => {
-  const storageObject = await browser.storage[areaName].get();
+chrome.storage.onChanged.addListener(async (changes, areaName) => {
+  const storageObject = await chrome.storage[areaName].get();
   const storageKeys = Object.keys(storageObject).sort((a, b) => a - b);
   const keysToRemove = storageKeys.splice(0, storageKeys.length - 512);
 
-  if (keysToRemove.length > 0) browser.storage[areaName].remove(keysToRemove);
+  if (keysToRemove.length > 0) chrome.storage[areaName].remove(keysToRemove);
 });
