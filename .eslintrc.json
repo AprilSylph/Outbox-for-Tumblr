@@ -3,14 +3,12 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "semistandard"
-  ],
   "globals": {
     "chrome": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 12
+    "ecmaVersion": 12,
+    "sourceType": "module"
   },
   "overrides": [
     {
