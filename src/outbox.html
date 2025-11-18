@@ -13,6 +13,7 @@
     <script type="module" src="lib/navigation.js"></script>
   </head>
   <body>
+    <input id="file-input" type="file" accept="application/json" hidden>
     <div id="base-container">
       <aside></aside>
       <main aria-busy="true"></main>
@@ -21,7 +22,7 @@
           <h1>Backup</h1>
           <ul>
             <li><a id="export" download>Save data to file</a></li>
-            <li><label for="import">Restore from file...</label><input id="import" type="file" accept="application/json" hidden></li>
+            <li><button id="import">Restore from file...</button></li>
           </ul>
         </section>
         <section id="links">

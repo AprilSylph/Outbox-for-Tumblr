@@ -224,13 +224,19 @@ aside ul li {
   line-height: 1.5rem;
 }
 
+aside button {
+  all: unset;
+}
+
 aside a,
-aside label {
+aside button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 
+  box-sizing: border-box;
+  width: 100%;
   padding: calc(var(--post-padding) / 2);
   border-radius: 8px;
 
@@ -238,12 +244,12 @@ aside label {
 }
 
 aside a:hover,
-aside label:hover {
+aside button:hover {
   background-color: rgba(var(--black), .07);
 }
 
 aside a:focus-visible,
-aside label:focus-visible {
+aside button:focus-visible {
   outline: 2px solid rgb(var(--blue));
   outline-offset: -2px;
 }
@@ -253,7 +259,7 @@ aside a[target="_blank"]::after {
   color:rgba(var(--black), .65);
 }
 
-aside label {
+aside button {
   cursor: pointer;
 }
 
@@ -379,17 +385,15 @@ article footer span {
 }
 
 article footer button {
+  all: unset;
+
   display: inline-flex;
   padding: 6px 12px;
-  border: none;
   border-radius: 9999px;
-  margin: 0;
-
-  appearance: none;
-  cursor: pointer;
 
   background-color: rgb(var(--red));
   color: white;
+  cursor: pointer;
   font-size: 0.875rem;
   font-weight: bold;
   line-height: 1.25rem;

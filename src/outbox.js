@@ -4,7 +4,8 @@ const anonymousAvatarSrc = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAA
 
 const mainElement = document.querySelector('main');
 const exportLink = document.getElementById('export');
-const importInput = document.getElementById('import');
+const importButton = document.getElementById('import');
+const fileInput = document.getElementById('file-input');
 
 const timeFormat = new Intl.DateTimeFormat(undefined, {
   day: 'numeric',
@@ -131,7 +132,9 @@ const onStorageChanged = (changes, areaName) => {
   updateExportDownload();
 };
 
-const onImportInputChanged = async ({ currentTarget }) => {
+const onImportButtonClicked = () => fileInput.showPicker();
+
+const onFileInputChanged = async ({ currentTarget }) => {
   try {
     const { files } = currentTarget;
     if (files.length === 0) return;
@@ -174,4 +177,5 @@ chrome.storage.local.get()
 chrome.storage.onChanged.addListener(onStorageChanged);
 updateExportDownload();
 
-importInput.addEventListener('change', onImportInputChanged);
+importButton.addEventListener('click', onImportButtonClicked);
+fileInput.addEventListener('change', onFileInputChanged);
