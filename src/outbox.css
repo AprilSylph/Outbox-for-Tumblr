@@ -263,6 +263,35 @@ aside button {
   cursor: pointer;
 }
 
+aside p {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin: calc(var(--post-padding) / 2);
+}
+
+aside small {
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+}
+
+#capacity {
+  display: block;
+  box-sizing: border-box;
+  height: 0.75rem;
+  width: 100%;
+  border: 1px solid rgba(var(--black), 0.05);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+#capacity > span {
+  display: block;
+  height: 100%;
+  transition: width 1s ease-in-out;
+}
+
 /* Main */
 
 main > p {
