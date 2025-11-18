@@ -135,9 +135,9 @@ main:empty::after {
   font-weight: 400;
 }
 
-main[aria-busy="true"]:empty::before { content: "Loading..."; }
+main[aria-busy="true"]:empty::before { content: "Loading…"; }
 main[aria-busy="false"]:empty::before { content: "Your outbox is empty."; }
-main[aria-busy="false"]:empty::after { content: "When you send asks or answer asks privately, they'll show up here."; }
+main[aria-busy="false"]:empty::after { content: "When you send asks or answer asks privately, they’ll show up here."; }
 
 main[data-show-limit-warning="true"]::before {
   content: "Your outbox is full.\aOlder items will be deleted automatically as new items are saved.";
