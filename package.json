@@ -3,12 +3,11 @@
   "repository": "github:AprilSylph/Outbox-for-Tumblr",
   "type": "module",
   "scripts": {
+    "test": "web-ext lint",
+    "posttest": "eslint src/",
+    "autofix": "eslint src/ --fix",
     "start": "web-ext run",
-    "test": "eslint . && web-ext lint",
-    "lint-webextension": "web-ext lint",
-    "build-webextension": "web-ext build",
-    "sign-webextension": "web-ext sign",
-    "webstore-upload": "chrome-webstore-upload upload --source=src/ --auto-publish"
+    "build": "web-ext build"
   },
   "devDependencies": {
     "chrome-webstore-upload-cli": "^3.5.0",
