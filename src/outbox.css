@@ -1,15 +1,14 @@
 :root {
-  --post-padding: 20px;
+  --post-padding: 16px;
   --post-vertical-spacing: 15px;
-  --post-margin: 20px;
+  --post-margin: 16px;
 
   --background: 247, 247, 247;
   --white: 233, 233, 233;
   --black: 0, 0, 0;
-  --accent: 0, 0, 0;
-
-  --red: #ff4930;
-  --blue: #00b8ff;
+  --red: 255, 73, 48;
+  --orange: 255, 138, 0;
+  --blue: 0, 184, 255;
 
   font-size: 16px;
   line-height: 1.5;
@@ -21,7 +20,6 @@
     --background: 0, 0, 0;
     --white: 34, 34, 34;
     --black: 255, 255, 255;
-    --accent: 0, 184, 255;
   }
 }
 
@@ -149,8 +147,8 @@ main[data-show-limit-warning="true"]::before {
   border-radius: 8px;
   margin-top: var(--post-margin);
 
-  background-color: var(--red);
-  color: rgb(var(--background));
+  background-color: rgb(var(--orange));
+  color: white;
   text-align: center;
   white-space: pre-line;
 }
@@ -246,7 +244,7 @@ aside label:hover {
 
 aside a:focus-visible,
 aside label:focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 2px solid rgb(var(--blue));
   outline-offset: -2px;
 }
 
@@ -267,42 +265,37 @@ main > p {
 
 article {
   border-radius: 8px;
-  padding: var(--post-vertical-spacing) var(--post-padding);
+  padding: var(--post-padding);
   margin-top: var(--post-margin);
 
   background-color: rgb(var(--white));
 }
 
 article:focus-visible {
-  box-shadow: 0 0 10px 1px rgb(var(--accent));
-  outline: none;
+  outline: 2px solid rgb(var(--blue));
 }
 
 article header {
   margin-bottom: var(--post-vertical-spacing);
 
+  color: rgba(var(--black), 0.65);
   font-size: .875rem;
-  font-weight: 700;
+  font-weight: normal;
+  line-height: 1.25rem;
+}
+
+article header::before {
+  content: "Sent to ";
 }
 
 article header:empty::before {
-  content: "Private Answer";
-  opacity: 0.65;
+  content: "Private answer";
 }
 
 article header a {
   color: inherit;
+  font-weight: bold;
   text-decoration: none;
-}
-
-article header a::before {
-  content: "You asked ";
-  opacity: 0.65;
-}
-
-article header a::after {
-  content: ":";
-  opacity: 0.65;
 }
 
 article section.error {
@@ -311,8 +304,8 @@ article section.error {
   margin-left: calc(0px - var(--post-padding));
   margin-right: calc(0px - var(--post-padding));
 
-  background-color: var(--red);
-  color: rgb(var(--background));
+  background-color: rgb(var(--red));
+  color: white;
   text-align: center;
 }
 
@@ -374,29 +367,45 @@ article footer {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  box-sizing: content-box;
-  min-height: 24px;
-  margin-top: var(--post-vertical-spacing);
+  padding-top: var(--post-vertical-spacing);
+  margin-top: var(--post-padding);
 }
 
 article footer span {
   color: rgba(var(--black), 0.65);
-  font-size: .875rem;
+  font-size: 0.875rem;
   font-weight: normal;
+  line-height: 1.25rem;
 }
 
 article footer button {
-  padding: 0;
+  display: inline-flex;
+  padding: 6px 12px;
   border: none;
+  border-radius: 9999px;
   margin: 0;
 
   appearance: none;
   cursor: pointer;
 
-  background-color: transparent;
-  color: rgba(var(--black), 0.65);
-  font-weight: 700;
-  line-height: 1;
+  background-color: rgb(var(--red));
+  color: white;
+  font-size: 0.875rem;
+  font-weight: bold;
+  line-height: 1.25rem;
+}
+
+article footer button:hover {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+}
+
+article footer button:active {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4));
+}
+
+article footer button:focus-visible {
+  outline: 2px solid rgb(var(--red));
+  outline-offset: 2px;
 }
 
 /* NPF elements */
@@ -479,10 +488,9 @@ article footer button {
   white-space: nowrap;
 }
 
-[data-attribution="link"]:hover,
-[data-attribution="link"]:focus {
-  background-color: rgba(var(--accent), 0.07);
-  color: rgb(var(--accent));
+[data-attribution="link"]:hover {
+  background-color: rgba(var(--blue), 0.07);
+  color: rgb(var(--blue));
 }
 
 [data-attribution="app"][data-has-logo] {
@@ -504,7 +512,7 @@ article details summary {
   display: block;
   padding: 6px 10px;
 
-  color: rgb(var(--accent));
+  color: rgb(var(--blue));
   cursor: pointer;
   font-weight: 700;
   text-align: center;
