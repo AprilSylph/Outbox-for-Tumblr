@@ -169,13 +169,13 @@ aside:last-child {
   margin-right: var(--post-margin);
 }
 
-@media (max-width: /* (aside width * 2) + main width + (--post-margin * 4) = */ 1220px) {
+@media not (min-width: /* (aside width * 2) + main width + (--post-margin * 4) = */ 1204px) {
   aside:empty {
     display: none;
   }
 }
 
-@media (max-width: /* aside width + main width + (--post-margin * 3) = */ 900px) {
+@media not (min-width: /* aside width + main width + (--post-margin * 3) = */ 888px) {
   #base-container {
     flex-direction: column;
     align-items: center;
