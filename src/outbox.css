@@ -8,7 +8,8 @@
   --black: 0, 0, 0;
   --accent: 0, 0, 0;
 
-  --red: #ff492f;
+  --red: #ff4930;
+  --blue: #00b8ff;
 
   font-size: 16px;
   line-height: 1.5;
@@ -118,7 +119,7 @@ main:empty {
   justify-content: center;
   align-items: center;
   padding: 100px var(--post-padding);
-  border-radius: 3px;
+  border-radius: 8px;
   margin-top: var(--post-margin);
 
   background-color: rgba(var(--black), 0.07);
@@ -145,7 +146,7 @@ main[data-show-limit-warning="true"]::before {
 
   display: block;
   padding: 14px 16px;
-  border-radius: 6px;
+  border-radius: 8px;
   margin-top: var(--post-margin);
 
   background-color: var(--red);
@@ -197,35 +198,32 @@ aside:last-child {
 /* Sidebars */
 
 aside section {
+  border: 1px solid rgba(var(--black), 0.05);
+  border-radius: 12px;
   margin-top: var(--post-margin);
+
+  background-color: rgb(var(--white));
 }
 
 aside h1 {
-  padding: 0 10px 10px;
-  border-bottom: 2px solid rgba(var(--black), .13);
+  padding: var(--post-padding) var(--post-padding) var(--post-vertical-spacing);
   margin: 0;
 
-  font-size: 1.3125rem;
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1rem;
 }
 
 aside ul {
-  padding: 0;
+  padding: 0 calc(var(--post-padding) / 2) var(--post-vertical-spacing);
   margin: 0;
 
   list-style-type: none;
 }
 
 aside ul li {
-  padding: 5px 10px;
-
-  font-size: 1.125rem;
-}
-
-aside ul li:hover,
-aside ul li:focus-within {
-  background-color: rgba(var(--black), .07);
+  font-weight: bold;
+  line-height: 1.5rem;
 }
 
 aside a,
@@ -234,9 +232,22 @@ aside label {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  min-height: 36px;
+
+  padding: calc(var(--post-padding) / 2);
+  border-radius: 8px;
 
   text-decoration: none;
+}
+
+aside a:hover,
+aside label:hover {
+  background-color: rgba(var(--black), .07);
+}
+
+aside a:focus-visible,
+aside label:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: -2px;
 }
 
 aside a[target="_blank"]::after {
@@ -255,7 +266,7 @@ main > p {
 }
 
 article {
-  border-radius: 3px;
+  border-radius: 8px;
   padding: var(--post-vertical-spacing) var(--post-padding);
   margin-top: var(--post-margin);
 
