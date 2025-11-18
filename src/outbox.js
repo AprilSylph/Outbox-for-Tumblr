@@ -77,7 +77,10 @@ const constructItem = ([timestamp, { recipient, recipientUrl, error, content, la
   deleteButton.addEventListener('click', onDeleteButtonClicked);
 
   const timestampDate = new Date(parseInt(timestamp));
-  const timestampElement = Object.assign(document.createElement('span'), { textContent: timeFormat.format(timestampDate) });
+  const timestampElement = Object.assign(document.createElement('time'), {
+    dateTime: timestampDate.toISOString(),
+    textContent: timeFormat.format(timestampDate),
+  });
 
   footerElement.append(timestampElement, deleteButton);
 

@@ -377,7 +377,7 @@ article footer {
   margin-top: var(--post-padding);
 }
 
-article footer span {
+article footer time {
   color: rgba(var(--black), 0.65);
   font-size: 0.875rem;
   font-weight: normal;
