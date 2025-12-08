@@ -99,16 +99,13 @@ body {
 
 #base-container {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
 }
 
 main {
   box-sizing: border-box;
   width: 540px;
   padding-bottom: var(--post-margin);
-  margin: 0 var(--post-margin);
 }
 
 main:empty {
@@ -153,47 +150,73 @@ main[data-show-limit-warning="true"]::before {
   white-space: pre-line;
 }
 
-aside {
-  position: sticky;
-  top: 0;
+/* Single-column layout | 100vw > aside width + main width + (--post-margin * 3) */
+@media not (min-width: 888px) {
+  #base-container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 
-  width: 300px;
-  padding-bottom: var(--post-margin);
+  aside {
+    height: 264px;
+    width: 540px;
+  }
+
+  aside:last-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    column-gap: 12px;
+    overflow-x: auto;
+  }
+
+  aside section {
+    flex-basis: 264px;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  aside div:last-child {
+    margin-top: auto;
+  }
 }
 
-aside:first-child {
-  margin-left: var(--post-margin);
+/* Multi-column layout | 100vw ≥ aside width + main width + (--post-margin * 3) */
+@media (min-width: 888px) {
+  #base-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  main {
+    margin: 0 var(--post-margin);
+  }
+
+  aside {
+    position: sticky;
+    top: 0;
+    width: 300px;
+    padding-bottom: var(--post-margin);
+  }
+
+  aside:first-child {
+    margin-left: var(--post-margin);
+  }
+
+  aside:last-child {
+    margin-right: var(--post-margin);
+  }
 }
 
-aside:last-child {
-  margin-right: var(--post-margin);
-}
-
-@media not (min-width: /* (aside width * 2) + main width + (--post-margin * 4) = */ 1204px) {
+/* Two-column layout | 100vw < (aside width * 2) + main width + (--post-margin * 4) */
+@media not (min-width: 1204px) {
   aside:empty {
     display: none;
   }
 }
 
-@media not (min-width: /* aside width + main width + (--post-margin * 3) = */ 888px) {
-  #base-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  aside {
-    position: static;
-
-    width: 540px;
-  }
-
-  aside:first-child,
-  aside:last-child {
-    margin: 0;
-  }
-}
-
-/* Sidebars */
+/* Sidebar */
 
 aside section {
   display: flex;
@@ -312,6 +335,12 @@ article {
   margin-top: var(--post-margin);
 
   background-color: rgb(var(--white));
+}
+
+@media (max-width: 540px) {
+  article {
+    border-radius: 12px;
+  }
 }
 
 article:focus-visible {
