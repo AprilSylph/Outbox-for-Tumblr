@@ -268,7 +268,11 @@ aside p {
   flex-direction: row;
   justify-content: space-between;
 
-  margin: calc(var(--post-padding) / 2);
+  margin: calc(var(--post-padding) / 2) var(--post-padding);
+}
+
+aside p:last-child {
+  margin-bottom: var(--post-vertical-spacing);
 }
 
 aside small {
