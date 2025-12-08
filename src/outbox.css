@@ -196,6 +196,10 @@ aside:last-child {
 /* Sidebars */
 
 aside section {
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
   border: 1px solid rgba(var(--black), 0.05);
   border-radius: 12px;
   margin-top: var(--post-margin);
@@ -219,7 +223,12 @@ aside ul {
   list-style-type: none;
 }
 
-aside ul li {
+aside div {
+  padding: 0 var(--post-padding) var(--post-vertical-spacing);
+  margin: 0;
+}
+
+aside li {
   font-weight: bold;
   line-height: 1.5rem;
 }
@@ -267,12 +276,7 @@ aside p {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  margin: calc(var(--post-padding) / 2) var(--post-padding);
-}
-
-aside p:last-child {
-  margin-bottom: var(--post-vertical-spacing);
+  margin: calc(var(--post-padding) / 2) 0 0;
 }
 
 aside small {
