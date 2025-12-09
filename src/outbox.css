@@ -150,6 +150,12 @@ main[data-show-limit-warning="true"]::before {
   white-space: pre-line;
 }
 
+@media (max-width: 540px) {
+  main[data-show-limit-warning="true"]::before {
+    border-radius: 0;
+  }
+}
+
 /* Single-column layout | 100vw > aside width + main width + (--post-margin * 3) */
 @media not (min-width: 888px) {
   #base-container {
