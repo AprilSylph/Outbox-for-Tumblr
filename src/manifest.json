@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Outbox for Tumblr",
-  "version": "2.1.0",
+  "version": "2.2.0",
 
   "description": "Save outgoing Tumblr asks automatically",
   "icons": {
