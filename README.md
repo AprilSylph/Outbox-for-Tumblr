@@ -8,7 +8,7 @@ Save outgoing Tumblr asks automatically.
 
 ## Screenshots
 
-![](https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/main/assets/screenshots/dark.png) | ![](https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/main/assets/screenshots/light.png)
+![](https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/refs/heads/main/assets/screenshots/light.png) | ![](https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/refs/heads/main/assets/screenshots/dark.png)
 -- | --
 
 ## Installation
