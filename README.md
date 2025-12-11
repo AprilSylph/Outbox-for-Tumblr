@@ -8,8 +8,10 @@ Save outgoing Tumblr asks automatically.
 
 ## Screenshots
 
-![](https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/refs/heads/main/assets/screenshots/light.png) | ![](https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/refs/heads/main/assets/screenshots/dark.png)
--- | --
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/refs/heads/main/assets/screenshots/dark.png">
+  <img src="https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/refs/heads/main/assets/screenshots/light.png">
+</picture>
 
 ## Installation
 - [Get this extension for Firefox](https://addons.mozilla.org/addon/outbox-for-tumblr/)
