@@ -1,4 +1,4 @@
-# Outbox for Tumblr [![CI](https://github.com/AprilSylph/Outbox-for-Tumblr/actions/workflows/ci.yml/badge.svg)](https://github.com/AprilSylph/Outbox-for-Tumblr/actions/workflows/ci.yml)
+# Outbox for Tumblr [![CI](https://github.com/AprilSylph/Outbox-for-Tumblr/actions/workflows/ci.yml/badge.svg)](https://github.com/AprilSylph/Outbox-for-Tumblr/actions/workflows/ci.yml) [![neostandard javascript style](https://img.shields.io/badge/code_style-neostandard-F7DF1E?logo=javascript)](https://github.com/neostandard/neostandard)
 Save outgoing Tumblr asks automatically.
 
 ## Features
