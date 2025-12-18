@@ -1,21 +1,32 @@
-# Contributing to Outbox for Tumblr
+### Prerequisites
 
-## Issue guidelines
+1. [Download and install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for your platform
+2. [Install editorconfig](https://editorconfig.org/#download) for your favourite text editor
 
-- Check the list of open issues before submitting your own to help reduce duplicate issues.
-- If you see your issue already listed, upvote it by adding a :+1: reaction to the initial comment.
+### Setup
 
-## Pull request guidelines
+1. Fork this repository
+2. Clone your fork locally
+3. In your local copy, install the project dependencies with **`npm install`**
 
-All contributions must be compatible with the repository license (GPL-3.0).
+### Development
 
-- Give your pull request a descriptive, but concise title. It may be used as part of the next release's patch notes.
-- Start your pull request body with a high-level (user-understandable) description of what the changes do.
+Load your clone's `src/` directory as a temporary addon:
+- Firefox: [Loading a temporary extension](https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html#extensions)
+- Chromium: [Load an unpacked extension](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked)
 
-## Style guide
+If you make changes, be sure to reload the temporary addon.
 
-[![js-semistandard-style](https://raw.githubusercontent.com/standard/semistandard/master/badge.svg)](https://github.com/standard/semistandard)
+### CLI reference
 
-This project follows JavaScript Semi-Standard Style via [`eslint-config-semistandard`](https://github.com/standard/eslint-config-semistandard).
+- **`npm start`**: Run your local copy of the addon (see [`web-ext run`](https://extensionworkshop.com/documentation/develop/web-ext-command-reference/#web-ext-run)).
+- **`npm test`**: Runs all linters. Will report any syntax or style errors.
+- **`npm test --ignore-scripts`**: Runs only the addon linter. Only reports syntax and WebExtension API errors.
+- **`npm run autofix`**: Automatically fixes any style errors.
+- **`npm run build`**: Creates an unsigned ZIP of the addon.
 
-Stylesheets should follow Nicolas Gallagher's [Idiomatic CSS](https://github.com/necolas/idiomatic-css#readme) principles. Additionally, element IDs and classnames should be `kebab-case`, to fit with the automatic casing of [`data-*` attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*).
+### Style guide
+
+[![neostandard javascript style](https://img.shields.io/badge/code_style-neostandard-F7DF1E?logo=javascript&style=for-the-badge)](https://github.com/neostandard/neostandard)
+
+This project's JavaScript style is enforced by linting. Use **`npm run autofix`** to format your code prior to commit.
