@@ -3,48 +3,48 @@
   --post-vertical-spacing: 15px;
   --post-margin: 16px;
 
-  --accent: #00b8ff;
-  --accent-tint: #00b8ff1a;
-  --chrome: #1a3049;
-  --chrome-panel: #263b53;
-  --chrome-panel-border: #ffffff00;
-  --chrome-tint: #ffffff0d;
-  --chrome-fg: #ccd1d7;
-  --chrome-fg-secondary: #99a3ae;
-  --chrome-fg-tertiary: #667586;
-  --chrome-orange: #ffb966;
-  --content-panel: #ffffff;
-  --content-panel-border: #ffffff00;
-  --content-fg: #000000;
-  --content-fg-secondary: #4c5e72;
-  --content-tint: #0019350d;
-  --content-tint-strong: #0019351a;
-  --danger: #ff4930;
-  --danger-hover: #cc3a26;
-  --danger-pressed: #992c1d;
+  --accent: rgba(0, 184, 255, 1);
+  --accent-tint: rgba(0, 184, 255, 0.1);
+  --chrome: rgba(26, 48, 73, 1);
+  --chrome-panel: rgba(38, 59, 83, 1);
+  --chrome-panel-border: rgba(255, 255, 255, 0);
+  --chrome-tint: rgba(255, 255, 255, 0.05);
+  --chrome-fg: rgba(204, 209, 215, 1);
+  --chrome-fg-secondary: rgba(153, 163, 174, 1);
+  --chrome-fg-tertiary: rgba(102, 117, 134, 1);
+  --chrome-orange: rgba(255, 185, 102, 1);
+  --content-panel: rgba(255, 255, 255, 1);
+  --content-panel-border: rgba(255, 255, 255, 0);
+  --content-fg: rgba(0, 0, 0, 1);
+  --content-fg-secondary: rgba(76, 94, 114, 1);
+  --content-tint: rgba(0, 25, 53, 0.05);
+  --content-tint-strong: rgba(0, 25, 53, 0.1);
+  --danger: rgba(255, 73, 48, 1);
+  --danger-hover: rgba(204, 58, 38, 1);
+  --danger-pressed: rgba(153, 44, 29, 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --accent: #00b8ff;
-    --accent-tint: #00b8ff1a;
-    --chrome: #0d0d0d;
-    --chrome-panel: #1a1a1a;
-    --chrome-panel-border: #ffffff0d;
-    --chrome-tint: #ffffff0d;
-    --chrome-fg: #ffffff;
+    --accent: rgba(0, 184, 255, 1);
+    --accent-tint: rgba(0, 184, 255, 0.1);
+    --chrome: rgba(13, 13, 13, 1);
+    --chrome-panel: rgba(26, 26, 26, 1);
+    --chrome-panel-border: rgba(255, 255, 255, 0.05);
+    --chrome-tint: rgba(255, 255, 255, 0.05);
+    --chrome-fg: rgba(255, 255, 255, 1);
     --chrome-fg-secondary: rgba(153, 153, 153, 1);
     --chrome-fg-tertiary: rgba(102, 102, 102, 1);
-    --chrome-orange: #ffb966;
-    --content-panel: #1a1a1a;
-    --content-panel-border: #262626;
-    --content-fg: #ffffff;
-    --content-fg-secondary: #999999;
-    --content-tint: #ffffff0d;
-    --content-tint-strong: #ffffff1a;
-    --danger: #ff4930;
-    --danger-hover: #ff6d59;
-    --danger-pressed: #ff9283;
+    --chrome-orange: rgba(255, 185, 102, 1);
+    --content-panel: rgba(26, 26, 26, 1);
+    --content-panel-border: rgba(38, 38, 38, 1);
+    --content-fg: rgba(255, 255, 255, 1);
+    --content-fg-secondary: rgba(153, 153, 153, 1);
+    --content-tint: rgba(255, 255, 255, 0.05);
+    --content-tint-strong: rgba(255, 255, 255, 0.1);
+    --danger: rgba(255, 73, 48, 1);
+    --danger-hover: rgba(255, 109, 89, 1);
+    --danger-pressed: rgba(255, 146, 131, 1);
   }
 }
 
