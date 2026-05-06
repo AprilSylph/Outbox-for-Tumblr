@@ -7,7 +7,7 @@
   --accent-tint: rgba(0, 184, 255, 0.1);
   --chrome: rgba(26, 48, 73, 1);
   --chrome-panel: rgba(38, 59, 83, 1);
-  --chrome-panel-border: rgba(255, 255, 255, 0);
+  --chrome-panel-border: rgba(255, 255, 255, 0.05);
   --chrome-tint: rgba(255, 255, 255, 0.05);
   --chrome-fg: rgba(204, 209, 215, 1);
   --chrome-fg-secondary: rgba(153, 163, 174, 1);
