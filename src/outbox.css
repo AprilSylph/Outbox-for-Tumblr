@@ -336,11 +336,12 @@ aside small {
 #capacity {
   display: block;
   box-sizing: border-box;
-  height: 0.75rem;
+  height: 8px;
   width: 100%;
-  border: 1px solid var(--chrome-panel-border);
-  border-radius: 0.75rem;
+  border-radius: 8px;
   overflow: hidden;
+
+  background-color: var(--chrome-tint);
 }
 
 #capacity > span {
