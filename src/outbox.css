@@ -126,7 +126,7 @@ body {
 
 main {
   box-sizing: border-box;
-  width: 540px;
+  width: 556px;
   padding-bottom: var(--post-margin);
 }
 
@@ -172,22 +172,22 @@ main[data-show-limit-warning="true"]::before {
   white-space: pre-line;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 556px) {
   main[data-show-limit-warning="true"]::before {
     border-radius: 0;
   }
 }
 
-/* Single-column layout | 100vw > aside width + main width + (--post-margin * 3) */
-@media not (min-width: 888px) {
+/* Single-column layout | 100vw < aside width + main width + (--post-margin * 3) */
+@media not (min-width: 904px) {
   #base-container {
     flex-direction: column-reverse;
     align-items: center;
   }
 
   aside {
-    height: 264px;
-    width: 540px;
+    height: 270px;
+    width: 556px;
   }
 
   aside:last-child {
@@ -195,12 +195,12 @@ main[data-show-limit-warning="true"]::before {
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-    column-gap: 12px;
+    column-gap: var(--post-margin);
     overflow-x: auto;
   }
 
   aside section {
-    flex-basis: 264px;
+    flex-basis: 270px;
     flex-shrink: 0;
     flex-grow: 0;
   }
@@ -211,7 +211,7 @@ main[data-show-limit-warning="true"]::before {
 }
 
 /* Multi-column layout | 100vw ≥ aside width + main width + (--post-margin * 3) */
-@media (min-width: 888px) {
+@media (min-width: 904px) {
   #base-container {
     flex-direction: row;
     align-items: flex-start;
@@ -238,7 +238,7 @@ main[data-show-limit-warning="true"]::before {
 }
 
 /* Two-column layout | 100vw < (aside width * 2) + main width + (--post-margin * 4) */
-@media not (min-width: 1204px) {
+@media not (min-width: 1220px) {
   aside:empty {
     display: none;
   }
@@ -365,7 +365,7 @@ article {
   outline: 1px solid var(--content-panel-border);
 }
 
-@media (max-width: 540px) {
+@media (max-width: 556px) {
   article {
     border-radius: 12px;
   }
@@ -557,7 +557,7 @@ article footer button:focus-visible {
 }
 
 [data-block="video"] iframe {
-  --post-width: min(540px, 100vw);
+  --post-width: min(556px, 100vw);
   height: calc(var(--post-width) * var(--aspect-ratio, calc(9 / 16)));
 }
 
