@@ -115,7 +115,7 @@ const updateExportDownload = () => {
 const updateInfoDisplay = () => chrome.storage.local.get().then(storageObject => {
   const storageUsed = Object.keys(storageObject).length;
 
-  capacityDisplay.firstElementChild.style.backgroundColor = storageUsed < 512 ? 'rgb(var(--blue))' : 'rgb(var(--orange))';
+  capacityDisplay.firstElementChild.style.backgroundColor = storageUsed < 512 ? 'var(--accent)' : 'var(--brand-orange)';
   capacityDisplay.firstElementChild.style.width = `${(storageUsed / 512) * 100}%`;
 
   quotaDisplay.replaceChildren(
