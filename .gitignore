@@ -1,3 +1,5 @@
+.DS_Store
+.vscode/
+.web-extension-id
 node_modules/
 web-ext-artifacts/
-release-notes.md
