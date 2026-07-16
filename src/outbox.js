@@ -59,13 +59,25 @@ const constructItem = ([timestamp, { recipient, recipientUrl, error, content, la
   if (ask) {
     const askWrapper = Object.assign(document.createElement('div'), { className: 'ask-wrapper' });
     const askElement = Object.assign(document.createElement('div'), { className: 'ask' });
+
+    /** @type {string?} */
+    const avatarSrcSet = ask.attribution?.blog?.avatar
+      ? ask.attribution.blog.avatar.toReversed().map(({ url, width }) => `${url} ${width}w`).join(', ')
+      : null;
+
     askWrapper.append(
       askElement,
       Object.assign(document.createElement('img'), {
         className: 'ask-avatar',
-        src: ask.attribution?.blog
-          ? `https://api.tumblr.com/v2/blog/${ask.attribution.blog.uuid}/avatar/40`
-          : anonymousAvatarSrc
+        loading: 'lazy',
+        ...(avatarSrcSet && {
+          sizes: '40px',
+          src: ask.attribution.blog.avatar[0].url,
+          srcset: avatarSrcSet,
+        }),
+        ...(!avatarSrcSet && {
+          src: anonymousAvatarSrc,
+        }),
       })
     );
     askElement.append(ask.content);
