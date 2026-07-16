@@ -1,7 +1,13 @@
 :root {
-  --post-padding: 16px;
-  --post-vertical-spacing: 15px;
-  --post-margin: 16px;
+  --space-xxxs: 2px;
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-s: 12px;
+  --space-m: 16px;
+  --space-l: 20px;
+  --space-xl: 24px;
+  --space-xxl: 28px;
+  --space-xxxl: 32px;
 
   --accent: rgba(0, 184, 255, 1);
   --accent-tint: rgba(0, 184, 255, 0.1);
@@ -68,7 +74,8 @@ p,
 blockquote,
 ul,
 ol {
-  margin: var(--post-vertical-spacing) 0;
+  margin-block: 15px;
+  margin-inline: 0;
 }
 
 a {
@@ -80,13 +87,13 @@ iframe { display: block; }
 small { font-size: 0.8125em; }
 
 blockquote {
-  padding-left: var(--post-padding);
+  padding-left: var(--space-m);
   border-left: 3px solid var(--content-tint-strong);
 }
 
 ul,
 ol {
-  padding-left: var(--post-padding);
+  padding-left: var(--space-m);
 }
 
 ul {
@@ -109,7 +116,7 @@ video {
 html {
   font-size: 16px;
   line-height: 1.5;
-  scroll-padding-top: var(--post-margin);
+  scroll-padding-top: var(--space-m);
 }
 
 body {
@@ -127,7 +134,7 @@ body {
 main {
   box-sizing: border-box;
   width: 540px;
-  padding-bottom: var(--post-margin);
+  padding-bottom: var(--space-m);
 }
 
 main:empty {
@@ -135,9 +142,9 @@ main:empty {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 100px var(--post-padding);
+  padding: 100px var(--space-m);
   border-radius: 8px;
-  margin-top: var(--post-margin);
+  margin-top: var(--space-m);
 
   background-color: var(--chrome-panel);
   text-align: center;
@@ -164,7 +171,7 @@ main[data-show-limit-warning="true"]::before {
   display: block;
   padding: 14px 16px;
   border-radius: 8px;
-  margin-top: var(--post-margin);
+  margin-top: var(--space-m);
 
   background-color: var(--brand-orange);
   color: var(--color-fg-light);
@@ -178,7 +185,7 @@ main[data-show-limit-warning="true"]::before {
   }
 }
 
-/* Single-column layout | 100vw > aside width + main width + (--post-margin * 3) */
+/* Single-column layout | 100vw > aside width + main width + (--space-m * 3) */
 @media not (min-width: 888px) {
   #base-container {
     flex-direction: column-reverse;
@@ -210,7 +217,7 @@ main[data-show-limit-warning="true"]::before {
   }
 }
 
-/* Multi-column layout | 100vw ≥ aside width + main width + (--post-margin * 3) */
+/* Multi-column layout | 100vw ≥ aside width + main width + (--space-m * 3) */
 @media (min-width: 888px) {
   #base-container {
     flex-direction: row;
@@ -218,26 +225,26 @@ main[data-show-limit-warning="true"]::before {
   }
 
   main {
-    margin: 0 var(--post-margin);
+    margin: 0 var(--space-m);
   }
 
   aside {
     position: sticky;
     top: 0;
     width: 300px;
-    padding-bottom: var(--post-margin);
+    padding-bottom: var(--space-m);
   }
 
   aside:first-child {
-    margin-left: var(--post-margin);
+    margin-left: var(--space-m);
   }
 
   aside:last-child {
-    margin-right: var(--post-margin);
+    margin-right: var(--space-m);
   }
 }
 
-/* Two-column layout | 100vw < (aside width * 2) + main width + (--post-margin * 4) */
+/* Two-column layout | 100vw < (aside width * 2) + main width + (--space-m * 4) */
 @media not (min-width: 1204px) {
   aside:empty {
     display: none;
@@ -253,14 +260,16 @@ aside section {
   box-sizing: border-box;
   border: 1px solid var(--chrome-panel-border);
   border-radius: 12px;
-  margin-top: var(--post-margin);
+  margin-top: var(--space-m);
 
   background-color: var(--chrome-panel);
   color: var(--chrome-fg);
 }
 
 aside h1 {
-  padding: var(--post-padding) var(--post-padding) var(--post-vertical-spacing);
+  padding-block-start: var(--space-l);
+  padding-block-end: var(--space-m);
+  padding-inline: var(--space-l);
   margin: 0;
 
   font-size: 1rem;
@@ -269,14 +278,16 @@ aside h1 {
 }
 
 aside ul {
-  padding: 0 calc(var(--post-padding) / 2) var(--post-vertical-spacing);
+  padding-block-end: var(--space-m);
+  padding-inline: var(--space-xs);
   margin: 0;
 
   list-style-type: none;
 }
 
 aside div {
-  padding: 0 var(--post-padding) var(--post-vertical-spacing);
+  padding-block-end: var(--space-m);
+  padding-inline: var(--space-l);
   margin: 0;
 }
 
@@ -297,7 +308,9 @@ aside :is(a, button) {
 
   box-sizing: border-box;
   width: 100%;
-  padding: calc(var(--post-padding) / 2);
+  padding-block: var(--space-xs);
+  padding-inline-start: var(--space-s);
+  padding-inline-end: var(--space-xs);
   border-radius: 8px;
 
   text-decoration: none;
@@ -325,7 +338,8 @@ aside p {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: calc(var(--post-padding) / 2) 0 0;
+  margin-block-start: var(--space-xs);
+  margin-block-end: 0;
 }
 
 aside small {
@@ -353,13 +367,13 @@ aside small {
 /* Main */
 
 main > p {
-  margin: var(--post-margin) 0;
+  margin: var(--space-m) 0;
 }
 
 article {
   border-radius: 8px;
-  padding: var(--post-padding);
-  margin-top: var(--post-margin);
+  padding: var(--space-m);
+  margin-top: var(--space-m);
 
   background-color: var(--content-panel);
   outline: 1px solid var(--content-panel-border);
@@ -376,7 +390,7 @@ article:focus-visible {
 }
 
 article header {
-  margin-bottom: var(--post-vertical-spacing);
+  margin-bottom: 14px;
 
   color: var(--content-fg-secondary);
   font-size: .875rem;
@@ -400,9 +414,9 @@ article header a {
 
 article section.error {
   max-width: none;
-  padding: 0.5ch var(--post-padding);
-  margin-left: calc(0px - var(--post-padding));
-  margin-right: calc(0px - var(--post-padding));
+  padding: 0.5ch var(--space-m);
+  margin-left: calc(0px - var(--space-m));
+  margin-right: calc(0px - var(--space-m));
 
   background-color: var(--danger);
   color: white;
@@ -412,14 +426,14 @@ article section.error {
 .ask-wrapper {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 40px;
-  grid-column-gap: var(--post-vertical-spacing);
-  margin: var(--post-vertical-spacing) 0;
+  grid-column-gap: 18px;
+  margin-block: var(--space-s);
 }
 
 .ask {
   position: relative;
 
-  padding: 0 var(--post-padding);
+  padding-inline: var(--space-m);
   border-radius: 3px;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
@@ -443,7 +457,7 @@ article section.error {
 
 .ask [data-attribution="blog"]:first-child {
   display: block;
-  margin: var(--post-vertical-spacing) 0;
+  margin-block: var(--space-s);
 
   color: var(--content-fg-secondary);
   font-size: .875rem;
@@ -458,17 +472,13 @@ article section.error {
   content: " asked:";
 }
 
-p {
-  margin: var(--post-vertical-spacing) 0;
-}
-
 article footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: var(--post-vertical-spacing);
-  margin-top: var(--post-padding);
+  padding-top: var(--space-xs);
+  margin-top: var(--space-m);
 }
 
 article footer time {
@@ -513,8 +523,8 @@ article footer button:focus-visible {
 [data-block="audio"],
 [data-block="video"] {
   max-width: none;
-  margin-left: calc(0px - var(--post-padding));
-  margin-right: calc(0px - var(--post-padding));
+  margin-left: calc(0px - var(--space-m));
+  margin-right: calc(0px - var(--space-m));
 }
 
 [data-row] > [data-block] {
@@ -522,16 +532,22 @@ article footer button:focus-visible {
   margin-right: 0;
 }
 
+[data-block="image"] img {
+  display: block;
+}
+
 [data-block="image"] figcaption {
-  padding: 0 var(--post-padding);
-  margin: calc(var(--post-vertical-spacing) / 2) 0;
+  padding: 0 var(--space-m);
+  margin-block-start: var(--space-xs);
+  margin-block-end: 0;
 }
 
 [data-block="link"] {
   border: 1px solid var(--content-tint-strong);
   border-radius: 7px;
   overflow: hidden;
-  margin: var(--post-vertical-spacing) 0;
+  margin-block: 15px;
+  margin-inline: 0;
 }
 
 [data-block="link"] figure {
@@ -563,9 +579,9 @@ article footer button:focus-visible {
 
 [data-attribution="post"],
 [data-attribution="app"] {
-  padding: 0 var(--post-padding);
-  margin-top: calc(var(--post-vertical-spacing) / 2);
-  margin-bottom: var(--post-vertical-spacing);
+  padding-block: 0;
+  padding-inline: var(--space-m);
+  margin-block: var(--space-xxs);
 
   color: var(--content-fg-secondary);
   text-align: end;
@@ -575,7 +591,7 @@ article footer button:focus-visible {
 [data-attribution="link"] {
   display: block;
   overflow: hidden;
-  padding: 0 var(--post-padding);
+  padding: 0 var(--space-m);
 
   background-color: var(--content-tint-strong);
   color: var(--content-fg-secondary);
