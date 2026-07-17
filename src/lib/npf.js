@@ -89,12 +89,15 @@ const blockRenderers = {
     return document.createElement('figure').tap(figure => {
       figure.append(document.createElement('img').tap(img => {
         alt_text && (img.alt = img.title = alt_text);
+        img.loading = 'lazy';
+        img.sizes = 'auto';
         img.src = media[0].url;
         img.srcset = media
           .filter(({ cropped }) => !cropped)
-          .reverse()
+          .toReversed()
           .map(({ url, width }) => `${url} ${width}w`)
-          .join(',\n');
+          .join(', ');
+        img.style.aspectRatio = `${media[0].width} / ${media[0].height}`;
       }));
 
       if (attribution) figure.append(renderAttribution(attribution));
