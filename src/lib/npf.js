@@ -306,7 +306,7 @@ const attributionRenderers = {
   post: ({ url, blog: { name, uuid } }) => document.createElement('a').tap(a => {
     Object.assign(a, { href: url, target: '_blank' });
     a.append(
-      'Originally posted by ',
+      'GIF by ',
       Object.assign(document.createElement('strong'), { textContent: name || uuid })
     );
   }),
@@ -314,7 +314,7 @@ const attributionRenderers = {
   link: ({ url }) => Object.assign(document.createElement('a'), {
     href: url,
     target: '_blank',
-    textContent: url
+    textContent: URL.canParse(url) ? new URL(url).hostname : url
   }),
 
   blog: ({ blog: { url, title, name, uuid } }) => document.createElement('p').tap(p => p.append(

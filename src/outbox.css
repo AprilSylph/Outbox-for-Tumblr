@@ -10,6 +10,7 @@
   --space-xxxl: 32px;
 
   --accent: rgba(0, 184, 255, 1);
+  --accent-hover: rgba(51, 198, 255, 1);
   --accent-tint: rgba(0, 184, 255, 0.1);
   --chrome: rgba(26, 48, 73, 1);
   --chrome-panel: rgba(38, 59, 83, 1);
@@ -35,6 +36,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --accent: rgba(0, 184, 255, 1);
+    --accent-hover: rgba(51, 198, 255, 1);
     --accent-tint: rgba(0, 184, 255, 0.1);
     --chrome: rgba(13, 13, 13, 1);
     --chrome-panel: rgba(26, 26, 26, 1);
@@ -537,9 +539,8 @@ article footer button:focus-visible {
 }
 
 [data-block="image"] figcaption {
-  padding: 0 var(--space-m);
-  margin-block-start: var(--space-xs);
-  margin-block-end: 0;
+  padding-inline: var(--space-m);
+  margin-block: var(--space-xs);
 }
 
 [data-block="link"] {
@@ -577,49 +578,53 @@ article footer button:focus-visible {
   height: calc(var(--post-width) * var(--aspect-ratio, calc(9 / 16)));
 }
 
-[data-attribution="post"],
-[data-attribution="app"] {
-  padding-block: 0;
-  padding-inline: var(--space-m);
-  margin-block: var(--space-xxs);
-
-  color: var(--content-fg-secondary);
-  text-align: end;
-  text-decoration: none;
-}
-
-[data-attribution="link"] {
+:is([data-attribution="post"], [data-attribution="link"], [data-attribution="app"]) {
   display: block;
+  padding-inline: var(--space-xs);
+  margin-block: var(--space-xs);
   overflow: hidden;
-  padding: 0 var(--space-m);
 
-  background-color: var(--content-tint-strong);
   color: var(--content-fg-secondary);
-  font-size: 0.875rem;
-  line-height: 1.875rem;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
   text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-[data-attribution="link"]:hover {
-  background-color: var(--accent-tint);
-  color: var(--accent);
+:is([data-attribution="post"], [data-attribution="link"], [data-attribution="app"]):hover {
+  color: var(--accent-hover);
 }
 
-[data-attribution="app"][data-has-logo] {
+[data-attribution="post"] {
+  text-align: end;
+}
+
+:is([data-attribution="link"], [data-attribution="app"])::after {
+  display: inline-flex;
+  justify-content: center;
+  width: 1.125rem;
+
+  content: '\276F';
+  font-weight: bold;
+}
+
+[data-attribution="app"]:has(img) {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding: 0 0.5ch;
+  column-gap: var(--space-xxs);
+}
+
+[data-attribution="app"]:has(img)::after {
+  content: none;
 }
 
 [data-attribution="app"] img {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.125rem;
+  height: 1.125rem;
   border-radius: 3px;
-  margin-left: 0.5ch;
 }
 
 article details summary {
