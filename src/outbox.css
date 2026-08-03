@@ -110,7 +110,7 @@ ol {
 figure,
 audio,
 video {
-  margin: 0 0 4px;
+  margin: 0 0 var(--space-xxs);
 }
 
 /* Page layout */
@@ -525,8 +525,13 @@ article footer button:focus-visible {
 [data-block="audio"],
 [data-block="video"] {
   max-width: none;
-  margin-left: calc(0px - var(--space-m));
-  margin-right: calc(0px - var(--space-m));
+  margin-inline: calc(0px - var(--space-xs));
+}
+
+[data-block="link"],
+[data-block="audio"],
+[data-block="video"] {
+  margin-block: 10px;
 }
 
 [data-row] > [data-block] {
@@ -540,14 +545,13 @@ article footer button:focus-visible {
 
 [data-block="image"] figcaption {
   padding-inline: var(--space-m);
-  margin-block: var(--space-xs);
+  margin-block: var(--space-xxs);
 }
 
 [data-block="link"] {
   border: 1px solid var(--content-tint-strong);
   border-radius: 7px;
   overflow: hidden;
-  margin-block: 15px;
   margin-inline: 0;
 }
 
@@ -574,14 +578,14 @@ article footer button:focus-visible {
 }
 
 [data-block="video"] iframe {
-  --post-width: min(556px, 100vw);
-  height: calc(var(--post-width) * var(--aspect-ratio, calc(9 / 16)));
+  --media-width: min(540px, 100vw);
+  height: calc(var(--media-width) * var(--aspect-ratio, calc(9 / 16)));
 }
 
 :is([data-attribution="post"], [data-attribution="link"], [data-attribution="app"]) {
   display: block;
   padding-inline: var(--space-xs);
-  margin-block: var(--space-xs);
+  margin-block: var(--space-xxs);
   overflow: hidden;
 
   color: var(--content-fg-secondary);
