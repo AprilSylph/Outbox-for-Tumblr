@@ -188,7 +188,7 @@ main[data-show-limit-warning="true"]::before {
 }
 
 /* Single-column layout | 100vw > aside width + main width + (--space-m * 3) */
-@media not (min-width: 888px) {
+@media not (min-width: 904px) {
   #base-container {
     flex-direction: column-reverse;
     align-items: center;
@@ -220,7 +220,7 @@ main[data-show-limit-warning="true"]::before {
 }
 
 /* Multi-column layout | 100vw ≥ aside width + main width + (--space-m * 3) */
-@media (min-width: 888px) {
+@media (min-width: 904px) {
   #base-container {
     flex-direction: row;
     align-items: flex-start;
@@ -247,7 +247,7 @@ main[data-show-limit-warning="true"]::before {
 }
 
 /* Two-column layout | 100vw < (aside width * 2) + main width + (--space-m * 4) */
-@media not (min-width: 1204px) {
+@media not (min-width: 1220px) {
   aside:empty {
     display: none;
   }
