@@ -541,43 +541,43 @@ article footer button:focus-visible {
 
 [data-block="image"] img {
   display: block;
-  border-radius: 4px;
+  border-radius: 4px; /* Images have rounded corners by default. */
 
   outline: 1px solid var(--content-tint-strong);
   outline-offset: -1px;
 }
 
 [data-block="image"]:has(+ :is([data-row], [data-block="image"])) img {
-  border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0; /* Images with proceedng image blocks or row containers get square bottom corners. */
   border-bottom-right-radius: 0;
 }
 
 :is([data-row], [data-block="image"]) + [data-block="image"] img {
-  border-top-left-radius: 0;
+  border-top-left-radius: 0; /* Images with preceding image blocks or row containers get square top corners. */
   border-top-right-radius: 0;
 }
 
 [data-row] > [data-block="image"] img {
-  border-radius: 4px;
+  border-radius: 4px; /* Reset; images within rows ignore the previous square corner rules. */
 }
 
 [data-row] > [data-block="image"]:has(+ [data-block="image"]) img {
-  border-top-right-radius: 0;
+  border-top-right-radius: 0; /* Images within rows with a proceeding image get square right corners. */
   border-bottom-right-radius: 0;
 }
 
 [data-row] > [data-block="image"] + [data-block="image"] img {
-  border-top-left-radius: 0;
+  border-top-left-radius: 0; /* Images within rows with a preceding image get square left corners. */
   border-bottom-left-radius: 0;
 }
 
 [data-row]:has(+ :is([data-row], [data-block="image"])) > [data-block="image"] img {
-  border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0; /* Images within rows that are proceeded by another image or row get square bottom corners. */
   border-bottom-right-radius: 0;
 }
 
 :is([data-row], [data-block="image"]) + [data-row] > [data-block="image"] img {
-  border-top-left-radius: 0;
+  border-top-left-radius: 0; /* Images within rows that are preceded by another image or row get square top corners. */
   border-top-right-radius: 0;
 }
 
