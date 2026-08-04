@@ -67,6 +67,7 @@
 [data-row] {
   display: flex;
   flex-direction: row;
+  column-gap: 4px;
 }
 
 [data-block],
@@ -76,15 +77,6 @@
 
 [data-row] > [data-block] {
   flex: 1;
-  padding: 0 2px;
-}
-
-[data-row] > [data-block]:first-child {
-  padding-left: 0;
-}
-
-[data-row] > [data-block]:last-child {
-  padding-right: 0;
 }
 
 [data-block="text"] {
