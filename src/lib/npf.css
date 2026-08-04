@@ -202,3 +202,42 @@
 [data-block="video"] iframe {
   width: 100%;
 }
+
+[data-block="audio"] figcaption {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 85px;
+}
+
+[data-block="audio"] figcaption div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 0;
+  flex: 1;
+  padding-inline: 20px;
+}
+
+[data-block="audio"] figcaption strong,
+[data-block="audio"] figcaption small {
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+
+[data-block="audio"] figcaption small {
+  font-size: 75%;
+}
+
+[data-block="audio"] figcaption img {
+  flex-basis: 85px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+[data-block="audio"] audio {
+  width: 100%;
+}

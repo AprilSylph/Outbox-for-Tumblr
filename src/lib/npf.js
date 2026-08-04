@@ -135,12 +135,39 @@ const blockRenderers = {
     });
   },
 
-  audio ({ url, media, title, artist, embedHtml, embed_html = embedHtml, attribution }) {
+  audio ({
+    url,
+    media,
+    title,
+    artist,
+    album,
+    poster,
+    embedHtml,
+    embed_html = embedHtml,
+    attribution
+  }) {
     const figure = document.createElement('figure');
 
     if (embed_html) {
       Object.assign(figure, { innerHTML: embed_html });
     } else if (media) {
+      if (title || artist || album || poster) {
+        const figcaption = document.createElement('figcaption');
+        const trackInfo = document.createElement('div');
+        figcaption.append(trackInfo);
+
+        title && trackInfo.append(Object.assign(document.createElement('strong'), { textContent: title }));
+        artist && trackInfo.append(Object.assign(document.createElement('small'), { textContent: artist }));
+        album && trackInfo.append(Object.assign(document.createElement('small'), { textContent: album }));
+
+        poster && figcaption.append(Object.assign(document.createElement('img'), {
+          sizes: '85px',
+          srcset: poster.toReversed().map(({ url, width }) => `${url} ${width}w`).join(', ')
+        }));
+
+        figure.append(figcaption);
+      }
+
       figure.append(Object.assign(document.createElement('audio'), {
         src: media.url,
         controls: true
