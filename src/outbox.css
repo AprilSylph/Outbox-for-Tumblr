@@ -25,6 +25,7 @@
   --content-fg-secondary: rgba(76, 94, 114, 1);
   --content-tint: rgba(0, 25, 53, 0.05);
   --content-tint-strong: rgba(0, 25, 53, 0.1);
+  --color-fg: rgba(0, 0, 0, 1);
   --color-fg-light: rgba(255, 255, 255, 1);
   --color-ui-fg: rgba(255, 255, 255, 1);
   --danger: rgba(255, 73, 48, 1);
@@ -53,6 +54,7 @@
     --content-tint: rgba(255, 255, 255, 0.05);
     --content-tint-strong: rgba(255, 255, 255, 0.1);
     --color-fg-light: rgba(255, 255, 255, 1);
+    --color-fg: rgba(0, 0, 0, 1);
     --color-ui-fg: rgba(255, 255, 255, 1);
     --danger: rgba(255, 73, 48, 1);
     --danger-hover: rgba(255, 109, 89, 1);
@@ -626,6 +628,19 @@ article footer button:focus-visible {
 
 [data-block="audio"] figcaption small {
   font-weight: bold;
+}
+
+[data-block="audio"] audio {
+  height: 40px;
+
+  background-color: var(--color-fg);
+  color-scheme: dark;
+}
+
+@supports (selector(audio::-webkit-media-controls-panel)) {
+  [data-block="audio"] audio::-webkit-media-controls-panel {
+    background-color: var(--color-fg);
+  }
 }
 
 [data-block="video"] :is(iframe, video) {
