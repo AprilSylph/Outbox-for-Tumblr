@@ -225,7 +225,7 @@
   line-height: 1.5;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: pre;
+  white-space: nowrap;
 }
 
 [data-block="audio"] figcaption small {
