@@ -207,7 +207,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: stretch;
   height: 85px;
+}
+
+[data-block="audio"] figcaption div,
+[data-block="audio"] figcaption img {
+  min-width: 0;
 }
 
 [data-block="audio"] figcaption div {
@@ -215,7 +221,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  min-width: 0;
   flex: 1;
   padding-inline: 20px;
 }
@@ -236,6 +241,7 @@
   flex-basis: 85px;
   flex-grow: 0;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 [data-block="audio"] audio {
