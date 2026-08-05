@@ -161,6 +161,7 @@ const blockRenderers = {
         album && trackInfo.append(Object.assign(document.createElement('small'), { textContent: album }));
 
         poster && figcaption.append(Object.assign(document.createElement('img'), {
+          loading: 'lazy',
           sizes: '85px',
           srcset: poster.toReversed().map(({ url, width }) => `${url} ${width}w`).join(', ')
         }));
