@@ -456,6 +456,13 @@ article section.error {
   content: "";
 }
 
+.ask::after {
+  display: block;
+  margin-block-start: var(--space-s);
+
+  content: "";
+}
+
 .ask-avatar {
   border-radius: 3px;
 }
@@ -538,8 +545,7 @@ article footer button:focus-visible {
 }
 
 [data-row] > [data-block] {
-  margin-left: 0;
-  margin-right: 0;
+  margin-inline: 0;
 }
 
 [data-block="image"] img {
