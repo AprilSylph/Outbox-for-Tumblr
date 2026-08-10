@@ -9,8 +9,8 @@ Save outgoing Tumblr asks automatically.
 ## Screenshots
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/refs/heads/main/assets/screenshots/dark.png">
-  <img src="https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/refs/heads/main/assets/screenshots/light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/e4d254d3c701655a33546f6ebeb24a6bf625aeb4/assets/screenshots/dark.webp">
+  <img src="https://raw.githubusercontent.com/AprilSylph/Outbox-for-Tumblr/e4d254d3c701655a33546f6ebeb24a6bf625aeb4/assets/screenshots/light.webp">
 </picture>
 
 ## Installation
